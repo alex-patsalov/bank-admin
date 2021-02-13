@@ -14,7 +14,17 @@ public class App {
         for (; ;){
             Scanner number = new Scanner(System.in);
             System.out.print("Guess a number? \n");
-            int userNumber = number.nextInt();
+            int userNumber = 0;
+            while (!number.hasNextInt()){
+                System.out.print("Input correct value: ");
+                userNumber = number.nextInt();
+            }
+//            if (number.hasNextInt()){
+//                userNumber = number.nextInt();
+//            } else {
+//                System.out.println("wrong number");
+//                break;
+//            }
             if (userNumber < randomNumber){
                 System.out.print("It is too small \n");
             } else if (userNumber > randomNumber){
