@@ -9,9 +9,8 @@ public class App {
         System.out.print("Print your name: ");
         Scanner name = new Scanner(System.in);
         String userName = name.nextLine();
-        System.out.printf("You printed %s \n", userName);
         Random random = new Random();
-        int randomNumber = random.nextInt(10) + 1;
+        int randomNumber = random.nextInt(100) + 1;
         for (; ;){
             Scanner number = new Scanner(System.in);
             System.out.print("Guess a number? \n");
@@ -21,10 +20,9 @@ public class App {
             } else if (userNumber > randomNumber){
                 System.out.print("It is too big \n");
             } else {
-                System.out.printf("Ta-da correct! Well done %s", userName);
+                System.out.printf("Ta-da correct! Well done, %s", userName);
                 break;
             }
         }
-
     }
 }
