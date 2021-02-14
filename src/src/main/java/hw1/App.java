@@ -4,6 +4,17 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
+
+    public static Boolean isInt (String s){
+        try {
+            Integer.parseInt(s);
+            return true;
+        }
+        catch(NumberFormatException e) {
+            return false;
+        }
+    }
+
     public static void main(String[] args) {
         System.out.print("Let the game begin!! \n");
         System.out.print("Print your name: ");
@@ -11,24 +22,14 @@ public class App {
         String userName = name.nextLine();
         Random random = new Random();
         int randomNumber = random.nextInt(100) + 1;
+        Scanner number = new Scanner(System.in);
+        System.out.print("Guess a number? \n");
         for (; ;){
-            Scanner number = new Scanner(System.in);
-            System.out.print("Guess a number? \n");
-            int userNumber = 0;
-            while (!number.hasNextInt()){
-                System.out.print("Input correct value: ");
-                userNumber = number.nextInt();
-            }
-//            if (number.hasNextInt()){
-//                userNumber = number.nextInt();
-//            } else {
-//                System.out.println("wrong number");
-//                break;
-//            }
+            int userNumber = number.nextInt();
             if (userNumber < randomNumber){
-                System.out.print("It is too small \n");
+                System.out.print("It is too small, try again: \n");
             } else if (userNumber > randomNumber){
-                System.out.print("It is too big \n");
+                System.out.print("It is too big, try again: \n");
             } else {
                 System.out.printf("Ta-da correct! Well done, %s", userName);
                 break;
