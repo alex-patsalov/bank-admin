@@ -46,16 +46,16 @@ public class App {
         Scanner name = new Scanner(System.in);
         String userName = name.nextLine();
         Random random = new Random();
-        int randomNumber = random.nextInt(1000) + 1;
+        int randomNumber = random.nextInt(100) + 1;
         Scanner number = new Scanner(System.in);
         System.out.print("Guess a number? \n");
         int counter = 0;
-        int[] array = new int[1000];
+        int[] array = new int[100];
         for (; ;) {
             String userNumber = number.nextLine();
             if (isInt(userNumber)) {
                 int input = Integer.parseInt(userNumber);
-                if (input > 1000) {
+                if (input > 100) {
                     System.out.print("The range is < 100 \nTry again: \n");
                 } else if (input < randomNumber) {
                     array[counter++] = input;
