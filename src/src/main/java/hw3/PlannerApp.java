@@ -21,22 +21,21 @@ public class PlannerApp {
 
     public static void main(String[] args) {
         String[][] schedule = fillArray(days, tasks);
-        System.out.println(Arrays.deepToString(schedule));
-        System.out.print("Pick a day: ");
-        String userInput = sc.nextLine().trim();
-        boolean found = true;
-        for (String[] element : schedule) {
-            if (userInput.equalsIgnoreCase("exit")) {
-                System.out.print("Bye!");
-                break;
-            }
-            if (userInput.equalsIgnoreCase(element[0]) && found) {
-                System.out.printf("Your task for %s is %s \n", element[0], element[1]);
-                continue;
-            }
-            if (!userInput.equalsIgnoreCase(element[0])) {
-                continue;
-//                System.out.print("I do not understand, try again later \n");
+        for (; ;) {
+            System.out.print("Pick a day: ");
+            String userInput = sc.nextLine().trim();
+            for (String[] el : schedule) {
+                if (userInput.equalsIgnoreCase("exit")) {
+                    System.out.print("Bye!");
+                    break;
+                } else if (userInput.equalsIgnoreCase(el[0])) {
+                    System.out.printf("Your task for %s is %s \n", el[0], el[1]);
+                    break;
+                }
+                if (!userInput.equalsIgnoreCase(el[0])) {
+                    System.out.print("I do not understand you try again \n");
+                    break;
+                }
             }
         }
     }
