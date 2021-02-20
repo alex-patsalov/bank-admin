@@ -1,6 +1,5 @@
 package hw3;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class PlannerApp {
@@ -21,22 +20,35 @@ public class PlannerApp {
 
     public static void main(String[] args) {
         String[][] schedule = fillArray(days, tasks);
-        for (; ;) {
+        for (; ; ) {
             System.out.print("Pick a day: ");
             String userInput = sc.nextLine().trim();
-            for (String[] el : schedule) {
-                if (userInput.equalsIgnoreCase("exit")) {
-                    System.out.print("Bye!");
-                    break;
-                } else if (userInput.equalsIgnoreCase(el[0])) {
-                    System.out.printf("Your task for %s is %s \n", el[0], el[1]);
-                    break;
+            if (userInput.equalsIgnoreCase("exit")) {
+                System.out.print("Bye!");
+                break;
+            } else if (userInput.contains("change")) {
+                for (int i = 0; i < schedule.length; i++) {
+                    if (!userInput.toLowerCase().contains(schedule[i][0].toLowerCase()) && i == schedule.length - 1) {
+                        System.out.print("the day doesn't exist or you forgot to include it \n");
+                    } else if (userInput.toLowerCase().contains(schedule[i][0].toLowerCase())) {
+                        System.out.print("Print new task: ");
+                        String newTask = sc.nextLine().trim();
+                        schedule[i][1] = newTask;
+                        break;
+                    }
                 }
-                if (!userInput.equalsIgnoreCase(el[0])) {
-                    System.out.print("I do not understand you try again \n");
+                continue;
+            }
+
+            for (int i = 0; i < schedule.length; i++) {
+                if (userInput.equalsIgnoreCase(schedule[i][0])) {
+                    System.out.printf("Your task for %s is %s \n", schedule[i][0], schedule[i][1]);
                     break;
+                } else if (!userInput.equalsIgnoreCase(schedule[i][0]) && i == schedule.length - 1) {
+                    System.out.print("I do not understand you try again \n");
                 }
             }
+
         }
     }
 }
