@@ -45,22 +45,19 @@ public class Pet {
     public String getNickname(){
         return this.nickname;
     }
-
     public String setNickName(String newNickName){return this.nickname = newNickName;}
-
     public int getTrickLevel(){
         return this.trickLevel;
     }
-
     public int setTrickLevel(int newTrickLevel){
         return this.trickLevel = newTrickLevel;
     }
-
     public int getAge(){return this.age;}
-
     public int setAge(int newAge){
         return this.age = newAge;
     }
-
     public String getSpecies(){return this.species;}
+    public String setSpecies(String newSpecies){return this.species = newSpecies;}
+    public String getHabits(){return Arrays.toString(this.habits);}
+    public String[] setHabits(String[] newHabits){return this.habits = newHabits;}
 }

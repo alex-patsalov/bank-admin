@@ -69,4 +69,8 @@ public class Human {
     public int setYearOfBirth(int newYear){return this.yearOfBirth = newYear;}
     public String getPet(Pet pet){return pet.toString();}
     public Pet setPet(Pet pet){return this.pet = pet;}
+    public String getMother(){return this.mother.toString();}
+    public Human setMother(Human mother){return this.mother = mother;}
+    public String getFather(){return this.father.toString();}
+    public Human setFather(Human father){return this.father = father;}
 }
