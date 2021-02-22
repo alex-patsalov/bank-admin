@@ -25,14 +25,14 @@ public class Family {
         System.out.printf("this new children array--->> %s", Arrays.toString(both));
         return both;
     }
-    public int findIndex(Human child){
-        Human[] children = getChildren();
-
-        return
-    }
-    public boolean deleteChild(int index){
-
-    }
+//    public int findIndex(Human child){
+//        Human[] children = getChildren();
+//
+//        return
+//    }
+//    public boolean deleteChild(int index){
+//
+//    }
     public String toString(){
         return String.format("Family: mother='%s', father='%s', pet='%s', children='%s'", this.mother.toString(), this.father.toString(), this.pet.toString(), Arrays.toString(this.children));
     }
