@@ -12,7 +12,7 @@ public class Human {
 //    private Human mother;
 //    private Human father;
     private String[][] schedule;
-    private Family family;
+    private Family family = this.family;
 
     public void greetPet(){
         System.out.printf("Привет %s", pet.getNickname());
