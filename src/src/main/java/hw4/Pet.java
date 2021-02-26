@@ -65,4 +65,11 @@ public class Pet {
 
         return this.species.equals(that.species) && this.nickname.equals(that.nickname);
     }
+
+    public int hashCode(){
+        int code = 11;
+        int random = 7;
+        code = random*code + this.age;
+        return code;
+    }
 }

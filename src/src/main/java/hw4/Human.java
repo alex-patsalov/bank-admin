@@ -68,4 +68,12 @@ public class Human {
 
         return this.name.equals(that.name) && this.surname.equals(that.surname);
     }
+
+    @Override
+    public int hashCode(){
+        int code = 11;
+        int random = 7;
+        code = random*code + this.yearOfBirth;
+        return code;
+    }
 }
