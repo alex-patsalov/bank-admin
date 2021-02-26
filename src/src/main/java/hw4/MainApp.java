@@ -28,6 +28,7 @@ public class MainApp {
         System.out.println("adding a child");
         family2.addChild(new Human("Barbie", "Girl", 2008, pet2, 10, null));
         System.out.printf("this is second family with two kids \n %s \n===\n", family2.toString());
-        System.out.printf("There are %d people in the second family", family2.countFamily(family2));
+        System.out.printf("There are %d people in the second family \n", family2.countFamily(family2));
+        System.out.printf("This a pet in the second family %s\n", family2.getPet());
     }
 }
