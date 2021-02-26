@@ -13,21 +13,15 @@ public class Human {
     private Family family;
 
     public void greetPet(){
-        System.out.printf("Привет %s", pet.getNickname());
+        System.out.printf("Привет %s \n", this.pet.getNickname());
     }
     public void feedPet(){
-        System.out.printf("%s иди кушать", pet.getNickname());
+        System.out.printf("%s иди кушать \n", this.pet.getNickname());
     }
-
     public void describePet(){
         String trickLevel;
-        trickLevel = pet.getTrickLevel() > 50 ? "очень хитрый" : "почти не хитрый";
-//        if (pet.trickLevel > 50) {
-//            trickLevel = "очень хитрый";
-//        } else {
-//            trickLevel = "почти не хитрый";
-//        }
-        System.out.printf("У меня есть %s, ему %d, он %s", pet.getSpecies(), pet.getAge(), trickLevel);
+        trickLevel = this.pet.getTrickLevel() > 50 ? "очень хитрый" : "почти не хитрый";
+        System.out.printf("У меня есть %s, ему %d, он %s \n", this.pet.getSpecies(), this.pet.getAge(), trickLevel);
     }
 
     public String toString(){
@@ -40,22 +34,10 @@ public class Human {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public Human(String name, String surname, int yearOfBirth, Family family){
+    public Human(String name, String surname, int yearOfBirth, Pet pet, int iq, String[][] schedule){
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
-        this.family = family;
-//        this.father = father;
-//        this.mother = mother;
-    }
-
-    public Human(String name, String surname, int yearOfBirth, Family family, Pet pet, int iq, String[][] schedule){
-        this.name = name;
-        this.surname = surname;
-        this.yearOfBirth = yearOfBirth;
-//        this.father = father;
-//        this.mother = mother;
-        this.family = family;
         this.pet = pet;
         this.iq = iq;
         this.schedule = schedule;
@@ -76,5 +58,14 @@ public class Human {
     public String getFamily(){return this.family.toString();}
     public void setFamily(Family family){
         this.family = family;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        Human that = (Human) obj;
+
+        return this.name.equals(that.name) && this.surname.equals(that.surname);
     }
 }

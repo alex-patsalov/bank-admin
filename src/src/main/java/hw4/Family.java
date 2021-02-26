@@ -3,8 +3,8 @@ package hw4;
 import java.util.Arrays;
 
 public class Family {
-    private Human mother = this.mother;
-    private Human father = this.father;
+    private Human mother;
+    private Human father;
     private Pet pet;
     private Human[] children = new Human[1];
 
@@ -19,16 +19,13 @@ public class Family {
 
     public Human[] addChild(Human child){
         Human[] newChild = {child};
-//        Human[] both = Arrays.copyOf(this.children, this.children.length + 1);
-        Human[] both = Arrays.copyOf(this.children, this.children.length);
-        System.out.println("both before" + Arrays.toString(both));
-//        System.arraycopy(newChild, 0, both, both.length - 1, 1);
-        System.arraycopy(newChild, 0, both, both.length - 1, 1);
-        System.out.println("both after1" + Arrays.toString(both));
-//        System.arraycopy(both, 1, both, 0, both.length - 1);
-//        both = Arrays.copyOfRange(both, 1, both.length);
-
-        System.out.println("both after2" + Arrays.toString(both));
+        Human[] both;
+        if(this.children[0] == null){
+            both = Arrays.copyOf(newChild, 1);
+        } else {
+            both = Arrays.copyOf(this.children, this.children.length + 1);
+            both[this.children.length] = newChild[0];
+        }
         this.children = both;
         return both;
     }
@@ -60,6 +57,15 @@ public class Family {
         this.father = father;
         this.father.setFamily(this);
     }
+
+    public Family(Human mother, Human father, Pet pet) {
+        this.mother = mother;
+        this.mother.setFamily(this);
+        this.father = father;
+        this.father.setFamily(this);
+        this.pet = pet;
+        this.pet.setOwner(father);
+    }
     public Family(Human mother, Human father, Human child, Pet pet){
         this.mother = mother;
         this.mother.setFamily(this);
@@ -71,5 +77,12 @@ public class Family {
         this.children = this.addChild(child);
 
     }
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        Family that = (Family) obj;
 
+        return this.getFather().equals(that.getFather()) && this.getMother().equals(that.getMother());
+    }
 }

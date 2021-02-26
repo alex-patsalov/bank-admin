@@ -11,15 +11,15 @@ public class Pet {
     private Human owner;
 
     public void eat() {
-        System.out.print("Я кушаю!");
+        System.out.print("Я кушаю! \n");
     }
 
     public void respond() {
-        System.out.printf("Привет хозяин. Я - %s. Я соскучился!", this.nickname);
+        System.out.printf("Привет хозяин. Я - %s. Я соскучился! \n", this.nickname);
     }
 
     public void foul() {
-        System.out.print("Нужно хорошо замести следы");
+        System.out.print("Нужно хорошо замести следы \n");
     }
 
     public String toString() {
@@ -61,4 +61,14 @@ public class Pet {
     public String setSpecies(String newSpecies){return this.species = newSpecies;}
     public String getHabits(){return Arrays.toString(this.habits);}
     public String[] setHabits(String[] newHabits){return this.habits = newHabits;}
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        Pet that = (Pet) obj;
+
+        return this.species.equals(that.species) && this.nickname.equals(that.nickname);
+    }
 }
