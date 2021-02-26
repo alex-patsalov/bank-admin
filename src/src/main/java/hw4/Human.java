@@ -9,10 +9,8 @@ public class Human {
     private int yearOfBirth;
     private int iq; // 0 ... 100 //
     private Pet pet;
-//    private Human mother;
-//    private Human father;
     private String[][] schedule;
-    private Family family = this.family;
+    private Family family;
 
     public void greetPet(){
         System.out.printf("Привет %s", pet.getNickname());
@@ -33,7 +31,7 @@ public class Human {
     }
 
     public String toString(){
-        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s", this.getClass(), this.name, this.surname, this.yearOfBirth, this.iq, Arrays.toString(this.schedule));
+        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, Arrays.toString(this.schedule));
     }
 
     public Human(String name, String surname, int yearOfBirth){
@@ -75,5 +73,8 @@ public class Human {
     public Human setMother(Human mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}
     public Human setFather(Human father){return this.family.setFather(father);}
-    public String getFamily(Family family){return this.family.toString();}
+    public String getFamily(){return this.family.toString();}
+    public void setFamily(Family family){
+        this.family = family;
+    }
 }

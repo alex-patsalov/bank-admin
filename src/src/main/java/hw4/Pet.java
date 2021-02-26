@@ -8,6 +8,7 @@ public class Pet {
     private int age;
     private int trickLevel; // 0...100 //
     private String[] habits;
+    private Human owner;
 
     public void eat() {
         System.out.print("Я кушаю!");
@@ -22,7 +23,7 @@ public class Pet {
     }
 
     public String toString() {
-        return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits));
+        return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s owner=%s", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits), this.owner.getName());
     }
 
     public Pet(String species, String nickname) {
@@ -38,9 +39,9 @@ public class Pet {
         this.habits = habits;
     }
 
-    public Pet() {
+    public String getOwner(){return this.owner.toString();}
 
-    }
+    public Human setOwner(Human owner){return this.owner = owner;}
 
     public String getNickname(){
         return this.nickname;
