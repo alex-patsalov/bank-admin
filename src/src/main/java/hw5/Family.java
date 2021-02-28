@@ -1,4 +1,4 @@
-package hw4;
+package hw5;
 
 import java.util.Arrays;
 
@@ -18,8 +18,8 @@ public class Family {
     public int setPetTrickLevel(int newTrickLevel){
         return this.pet.setTrickLevel(newTrickLevel);
     }
-    public String getPetSpecies(){return this.pet.getSpecies();}
-    public String setPetSpecies(String species){return this.pet.setSpecies(species);}
+    public Species getPetSpecies(){return this.pet.getSpecies();}
+    public Species setPetSpecies(Species species){return this.pet.setSpecies(species);}
     public int getPetAge(){return this.pet.getAge();}
     public int setPetAge(int age){return this.pet.setAge(age);}
     public String getMother(){return this.mother.toString();}

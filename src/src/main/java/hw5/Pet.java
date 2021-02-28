@@ -1,9 +1,9 @@
-package hw4;
+package hw5;
 
 import java.util.Arrays;
 
 public class Pet {
-    private String species;
+    private Species species;
     private String nickname;
     private int age;
     private int trickLevel; // 0...100 //
@@ -22,11 +22,11 @@ public class Pet {
     public String toString() {
         return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s owner=%s", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits), this.owner.getName());
     }
-    public Pet(String species, String nickname) {
+    public Pet(Species species, String nickname) {
         this.species = species;
         this.nickname = nickname;
     }
-    public Pet(String species, String nickname, int age, int trickLevel, String[] habits) {
+    public Pet(Species species, String nickname, int age, int trickLevel, String[] habits) {
         this.species = species;
         this.nickname = nickname;
         this.age = age;
@@ -49,8 +49,8 @@ public class Pet {
     public int setAge(int newAge){
         return this.age = newAge;
     }
-    public String getSpecies(){return this.species;}
-    public String setSpecies(String newSpecies){return this.species = newSpecies;}
+    public Species getSpecies(){return this.species;}
+    public Species setSpecies(Species newSpecies){return this.species = newSpecies;}
     public String getHabits(){return Arrays.toString(this.habits);}
     public String[] setHabits(String[] newHabits){return this.habits = newHabits;}
 
