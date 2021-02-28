@@ -8,20 +8,20 @@ public class Human {
     private String surname;
     private int yearOfBirth;
     private int iq; // 0 ... 100 //
-    private Pet pet;
+//    private Pet pet;
     private String[][] schedule;
     private Family family;
 
     public void greetPet(){
-        System.out.printf("Привет %s \n", this.pet.getNickname());
+        System.out.printf("Привет %s \n", this.family.getPet());
     }
     public void feedPet(){
-        System.out.printf("%s иди кушать \n", this.pet.getNickname());
+        System.out.printf("%s иди кушать \n", this.family.getPetName());
     }
     public void describePet(){
         String trickLevel;
-        trickLevel = this.pet.getTrickLevel() > 50 ? "очень хитрый" : "почти не хитрый";
-        System.out.printf("У меня есть %s, ему %d, он %s \n", this.pet.getSpecies(), this.pet.getAge(), trickLevel);
+        trickLevel = this.family.getPetTrickLevel() > 50 ? "очень хитрый" : "почти не хитрый";
+        System.out.printf("У меня есть %s, ему %d, он %s \n", this.family.getPetSpecies(), this.family.getPetAge(), trickLevel);
     }
 
     public String toString(){
@@ -38,7 +38,7 @@ public class Human {
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
-        this.pet = pet;
+//        this.pet = pet;
         this.iq = iq;
         this.schedule = schedule;
     }
@@ -49,8 +49,8 @@ public class Human {
     public String setSurname(String newSurname){return this.surname = newSurname;}
     public int getYearOfBirth(){return this.yearOfBirth;}
     public int setYearOfBirth(int newYear){return this.yearOfBirth = newYear;}
-    public String getPet(Pet pet){return pet.toString();}
-    public Pet setPet(Pet pet){return this.pet = pet;}
+//    public String getPet(Pet pet){return pet.toString();}
+//    public Pet setPet(Pet pet){return this.pet = pet;}
     public String getMother(){return this.family.getMother();}
     public Human setMother(Human mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}

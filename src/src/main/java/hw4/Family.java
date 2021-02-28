@@ -10,6 +10,18 @@ public class Family {
 
     public String getPet(){return this.pet.toString();}
     public Pet setPet(Pet pet){return this.pet = pet;}
+    public String getPetName(){return this.pet.getNickname();}
+    public String setPetName(String name){return this.pet.setNickName(name);}
+    public int getPetTrickLevel(){
+        return this.pet.getTrickLevel();
+    }
+    public int setPetTrickLevel(int newTrickLevel){
+        return this.pet.setTrickLevel(newTrickLevel);
+    }
+    public String getPetSpecies(){return this.pet.getSpecies();}
+    public String setPetSpecies(String species){return this.pet.setSpecies(species);}
+    public int getPetAge(){return this.pet.getAge();}
+    public int setPetAge(int age){return this.pet.setAge(age);}
     public String getMother(){return this.mother.toString();}
     public Human setMother(Human mother){return this.mother = mother;}
     public String getFather(){return this.father.toString();}

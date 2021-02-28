@@ -22,7 +22,6 @@ public class Pet {
     public String toString() {
         return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s owner=%s", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits), this.owner.getName());
     }
-
     public Pet(String species, String nickname) {
         this.species = species;
         this.nickname = nickname;
@@ -34,7 +33,6 @@ public class Pet {
         this.trickLevel = trickLevel;
         this.habits = habits;
     }
-
     public String getOwner(){return this.owner.toString();}
     public Human setOwner(Human owner){return this.owner = owner;}
     public String getNickname(){
