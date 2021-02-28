@@ -28,7 +28,6 @@ public class Family {
     public Human setFather(Human father){return this.father = father;}
     public int getChildrenQnty(){return this.children.length;}
     public Human[] getChildren(){return this.children;}
-
     public Human[] addChild(Human child){
         Human[] newChild = {child};
         Human[] both;
@@ -60,16 +59,13 @@ public class Family {
     public String toString(){
         return String.format("Family: mother='%s', father='%s', pet='%s', children='%s'", this.mother.getName(), this.father.getName(), this.pet.getNickname(), Arrays.toString(this.children));
     }
-
     public int countFamily(Family family){return 2 + getChildrenQnty();}
-
     public Family(Human mother, Human father){
         this.mother = mother;
         this.mother.setFamily(this);
         this.father = father;
         this.father.setFamily(this);
     }
-
     public Family(Human mother, Human father, Pet pet) {
         this.mother = mother;
         this.mother.setFamily(this);
@@ -77,6 +73,15 @@ public class Family {
         this.father.setFamily(this);
         this.pet = pet;
         this.pet.setOwner(father);
+    }
+    public Family(Human mother, Human father, Human child){
+        this.mother = mother;
+        this.mother.setFamily(this);
+        this.father = father;
+        this.father.setFamily(this);
+        child.setFamily(this);
+        this.children = this.addChild(child);
+
     }
     public Family(Human mother, Human father, Human child, Pet pet){
         this.mother = mother;

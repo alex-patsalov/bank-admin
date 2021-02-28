@@ -20,7 +20,7 @@ public class Pet {
         System.out.print("Нужно хорошо замести следы \n");
     }
     public String toString() {
-        return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s owner=%s", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits), this.owner.getName());
+        return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s}", this.species, this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits));
     }
     public Pet(Species species, String nickname) {
         this.species = species;

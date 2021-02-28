@@ -8,7 +8,6 @@ public class Human {
     private String surname;
     private int yearOfBirth;
     private int iq; // 0 ... 100 //
-//    private Pet pet;
     private String[][] schedule = new String[1][2];
     private Family family;
 
@@ -24,7 +23,7 @@ public class Human {
         System.out.printf("У меня есть %s, ему %d, он %s \n", this.family.getPetSpecies(), this.family.getPetAge(), trickLevel);
     }
     public String toString(){
-        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, Arrays.toString(this.schedule));
+        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s}", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, Arrays.deepToString(this.schedule));
     }
     public Human(String name, String surname, int yearOfBirth){
         this.name = name;
@@ -45,8 +44,6 @@ public class Human {
     public String setSurname(String newSurname){return this.surname = newSurname;}
     public int getYearOfBirth(){return this.yearOfBirth;}
     public int setYearOfBirth(int newYear){return this.yearOfBirth = newYear;}
-//    public String getPet(Pet pet){return pet.toString();}
-//    public Pet setPet(Pet pet){return this.pet = pet;}
     public String getMother(){return this.family.getMother();}
     public Human setMother(Human mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}
