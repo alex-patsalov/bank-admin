@@ -15,4 +15,7 @@ public final class Woman extends Human{
     public void setFamily(Family family){
         this.family = family;
     }
+    public void doMakeUp(){
+        System.out.println("Интересно накрашусь ли я за 2 часа?");
+    }
 }

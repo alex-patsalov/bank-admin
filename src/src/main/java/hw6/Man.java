@@ -15,4 +15,7 @@ public final class Man extends Human{
     public void setFamily(Family family){
         this.family = family;
     }
+    public void doRepair(){
+        System.out.println("Она снова попала в аварию!!");
+    }
 }
