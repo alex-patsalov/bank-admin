@@ -3,8 +3,8 @@ package hw6;
 import java.util.Arrays;
 
 public class Family {
-    private Human mother;
-    private Human father;
+    private Woman mother;
+    private Man father;
     private Pet pet;
     private Human[] children = new Human[1];
 
@@ -22,9 +22,9 @@ public class Family {
     public int getPetAge(){return this.pet.getAge();}
     public int setPetAge(int age){return this.pet.setAge(age);}
     public String getMother(){return this.mother.toString();}
-    public Human setMother(Human mother){return this.mother = mother;}
+    public Human setMother(Woman mother){return this.mother = mother;}
     public String getFather(){return this.father.toString();}
-    public Human setFather(Human father){return this.father = father;}
+    public Human setFather(Man father){return this.father = father;}
     public int getChildrenQnty(){return this.children.length;}
     public Human[] getChildren(){return this.children;}
     public Human[] addChild(Human child){
@@ -59,13 +59,13 @@ public class Family {
         return String.format("Family: mother='%s', father='%s', pet='%s', children='%s'", this.mother.getName(), this.father.getName(), this.pet.getNickname(), Arrays.toString(this.children));
     }
     public int countFamily(Family family){return 2 + getChildrenQnty();}
-    public Family(Human mother, Human father){
+    public Family(Woman mother, Man father){
         this.mother = mother;
         this.mother.setFamily(this);
         this.father = father;
         this.father.setFamily(this);
     }
-    public Family(Human mother, Human father, Pet pet) {
+    public Family(Woman mother, Man father, Pet pet) {
         this.mother = mother;
         this.mother.setFamily(this);
         this.father = father;
@@ -73,7 +73,7 @@ public class Family {
         this.pet = pet;
         this.pet.setOwner(father);
     }
-    public Family(Human mother, Human father, Human child){
+    public Family(Woman mother, Man father, Human child){
         this.mother = mother;
         this.mother.setFamily(this);
         this.father = father;
@@ -82,7 +82,7 @@ public class Family {
         this.children = this.addChild(child);
 
     }
-    public Family(Human mother, Human father, Human child, Pet pet){
+    public Family(Woman mother, Man father, Human child, Pet pet){
         this.mother = mother;
         this.mother.setFamily(this);
         this.father = father;

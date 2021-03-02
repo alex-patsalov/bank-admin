@@ -7,17 +7,17 @@ public class MainApp {
     static String[] fatherHabits = {"study", "office", "shopping", "study", "office", "work", "relax"};
     public static void main(String[] args) {
 
-        Human mother1 = new Woman("Jane", "Watson", 1970);
-        Human father1 = new Man("Joe", "Black", 1960);
+        Woman mother1 = new Woman("Jane", "Watson", 1970);
+        Man father1 = new Man("Joe", "Black", 1960);
         Pet pet1 = new Fish("Sam", 2, 60, new String[]{"eat", "sleep"});
         Human child1 = new Human("Alex", "Holland", 2004);
         Family family1 = new Family(mother1, father1, child1, pet1);
         family1.addChild(new Human("Alissa", "Boiner", 1994));
         family1.addChild(new Human("Mike", "Stewart", 1990));
         System.out.printf("this is first family \n%s \n===\n", family1.toString());
-
-        Human mother2 = new Human("Jolie", "Stend", 1986);
-        Human father2 = new Human("Jack", "Drama", 1978);
+        mother1.greetPet();
+        Woman mother2 = new Woman("Jolie", "Stend", 1986);
+        Man father2 = new Man("Jack", "Drama", 1978);
         Pet pet2 = new RoboCat("smarty", 2, 70, new String[]{"trick", "eat"});
         Human child2 = new Human("Alex", "Holland", 2004, pet2, 50, null);
         Family family2 = new Family(mother2, father2, child2, pet2);

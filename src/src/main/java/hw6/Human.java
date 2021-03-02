@@ -44,9 +44,9 @@ public class Human {
     public int getYearOfBirth(){return this.yearOfBirth;}
     public int setYearOfBirth(int newYear){return this.yearOfBirth = newYear;}
     public String getMother(){return this.family.getMother();}
-    public Human setMother(Human mother){return this.family.setMother(mother);}
+    public Human setMother(Woman mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}
-    public Human setFather(Human father){return this.family.setFather(father);}
+    public Human setFather(Man father){return this.family.setFather(father);}
     public String getFamily(){return this.family.toString();}
     public void setFamily(Family family){
         this.family = family;
