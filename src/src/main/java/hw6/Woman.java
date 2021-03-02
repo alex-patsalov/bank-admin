@@ -10,7 +10,7 @@ public final class Woman extends Human{
         super(name, surname, yearOfBirth, pet, iq, schedule);
     }
     public void greetPet(){
-        System.out.printf("Привет %s, я твоя хазяйка \n", this.family.getPet());
+        System.out.printf("Привет %s, я твоя хозяйка \n", this.family.getPet());
     }
     public void setFamily(Family family){
         this.family = family;
