@@ -14,7 +14,7 @@ public abstract class Pet {
     }
     public abstract void respond();
     public String toString() {
-        return String.format("{nickname='%s', age=%d, tricklevel=%d, habits=%s}", this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits));
+        return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s}", getSpecies(), this.nickname, this.age, this.trickLevel, Arrays.toString(this.habits));
     }
     public Pet(String nickname) {
         this.nickname = nickname;
@@ -26,7 +26,9 @@ public abstract class Pet {
         this.habits = habits;
     }
     public String getOwner(){return this.owner.toString();}
-    public Human setOwner(Human owner){return this.owner = owner;}
+    public void setOwner(Human owner){
+        this.owner = owner;
+    }
     public String getNickname(){
         return this.nickname;
     }

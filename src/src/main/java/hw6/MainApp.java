@@ -20,7 +20,7 @@ public class MainApp {
 //        father1.doRepair();
         Woman mother2 = new Woman("Jolie", "Stend", 1986);
         Man father2 = new Man("Jack", "Drama", 1978);
-        Pet pet2 = new RoboCat("smarty", 2, 70, new String[]{"trick", "eat"});
+        Pet pet2 = new Dog("smarty", 2, 70, new String[]{"trick", "eat"});
         Human child2 = new Human("Alex", "Holland", 2004, pet2, 50, null);
         Family family2 = new Family(mother2, father2, child2, pet2);
         System.out.printf("this is second family \n%s \n===\n", family2.toString());
