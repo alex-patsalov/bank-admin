@@ -9,7 +9,7 @@ public class Human {
     private String surname;
     private int yearOfBirth;
     private int iq; // 0 ... 100 //
-    private Map<DayOfWeek, String> schedule = new HashMap<>();
+    private final Map<DayOfWeek, String> schedule = new HashMap<>();
     private Family family;
 
     public void greetPet(Pet pet){

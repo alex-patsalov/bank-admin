@@ -1,7 +1,5 @@
 package hw7;
 
-import java.util.Arrays;
-
 public class MainApp {
 
     static String[] fatherHabits = {"study", "office", "shopping", "study", "office", "work", "relax"};
