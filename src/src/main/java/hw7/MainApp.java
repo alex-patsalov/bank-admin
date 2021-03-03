@@ -18,7 +18,7 @@ public class MainApp {
 //        father1.doRepair();
         Woman mother2 = new Woman("Jolie", "Stend", 1986);
         Man father2 = new Man("Jack", "Drama", 1978);
-        Pet pet2 = new Dog("smarty", 2, 70, "trick");
+        Dog pet2 = new Dog("smarty", 2, 70, "trick");
         pet2.addHabit("play");
         pet2.deleteHabit("play");
         Human child2 = new Human("Alex", "Holland", 2004, pet2, 50);
@@ -46,6 +46,7 @@ public class MainApp {
         }
         System.out.printf("father schedule-->%s \n", father2.getSchedule());
         family2.deleteChild(child2);
+        System.out.println("deleting a child...");
         System.out.printf("this is second family with one kids \n %s \n===\n", family2.toString());
 //        for (int i = 0; i < 40000; i++) {
 //            Human mother3 = new Human("Tania", "Watson", 1970);
