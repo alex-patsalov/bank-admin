@@ -2,6 +2,7 @@ package hw7;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 public class Family {
@@ -11,21 +12,35 @@ public class Family {
     private ArrayList<Human> children = new ArrayList<>();
 
     public String getAllPets(){return this.pets.toString();}
+    public Pet getPet(Pet pet){
+        for (Pet that : this.pets) {
+            if (that.equals(pet)) {
+                return that;
+            }
+        }
+        return null;
+    }
     public boolean addPet(Pet pet){return this.pets.add(pet);}
     public boolean removePet(Pet pet){
         return this.pets.contains(pet) && this.pets.remove(pet);
     }
-//    public String getPetName(){return this.pet.getNickname();}
-//    public String setPetName(String name){return this.pet.setNickName(name);}
-//    public int getPetTrickLevel(){
-//        return this.pet.getTrickLevel();
-//    }
-//    public int setPetTrickLevel(int newTrickLevel){
-//        return this.pet.setTrickLevel(newTrickLevel);
-//    }
-//    public Species getPetSpecies(){return this.pet.getSpecies();}
-//    public int getPetAge(){return this.pet.getAge();}
-//    public int setPetAge(int age){return this.pet.setAge(age);}
+    public String getPetName(Pet pet){
+        return this.getPet(pet).getNickname();
+    }
+    public String setPetName(String name, Pet pet){
+        return this.getPet(pet).setNickName(name);
+    }
+    public int getPetTrickLevel(Pet pet){
+        return this.getPet(pet).getTrickLevel();
+    }
+    public int setPetTrickLevel(Pet pet, int newTrickLevel){
+        return this.getPet(pet).setTrickLevel(newTrickLevel);
+    }
+    public Species getPetSpecies(Pet pet){
+        return this.getPet(pet).getSpecies();
+    }
+    public int getPetAge(Pet pet){return this.getPet(pet).getAge();}
+    public int setPetAge(Pet pet, int age){return this.getPet(pet).setAge(age);}
     public String getMother(){return this.mother.toString();}
     public Human setMother(Woman mother){return this.mother = mother;}
     public String getFather(){return this.father.toString();}
@@ -56,7 +71,6 @@ public class Family {
         this.father = father;
         this.father.setFamily(this);
         this.pets.add(pet);
-//        this.pets.setOwner(father);
     }
     public Family(Woman mother, Man father, Human child){
         this.mother = mother;
@@ -72,7 +86,6 @@ public class Family {
         this.father = father;
         this.father.setFamily(this);
         this.pets.add(pet);
-//        this.pet.setOwner(child);
         child.setFamily(this);
         this.children = this.addChild(child);
     }

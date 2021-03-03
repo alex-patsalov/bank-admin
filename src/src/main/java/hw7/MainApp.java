@@ -23,28 +23,30 @@ public class MainApp {
         Pet pet2 = new Dog("smarty", 2, 70, "trick");
         pet2.addHabit("play");
         pet2.deleteHabit("play");
-        Human child2 = new Human("Alex", "Holland", 2004, pet2, 50, null);
+        Human child2 = new Human("Alex", "Holland", 2004, pet2, 50);
         Family family2 = new Family(mother2, father2, child2, pet2);
         System.out.printf("this is second family \n%s \n===\n", family2.toString());
-//        System.out.printf("who is your owner? %s \n", pet2.getOwner());
-        mother2.greetPet();
+        mother2.greetPet(pet2);
         mother2.doMakeUp();
         father2.doRepair();
         pet2.respond();
         pet2.eat();
         pet2.foul();
-        child2.feedPet();
-        child2.greetPet();
-        child2.describePet();
-        System.out.println("adding a child");
-        family2.addChild(new Human("Barbie", "Girl", 2008, pet2, 10, null));
+        child2.feedPet(pet2);
+        child2.greetPet(pet2);
+        child2.describePet(pet2);
+        System.out.println("adding second pet \n");
+        family2.addPet(new Dog("Charlie", 21, 10,"sleep"));
+        System.out.printf("two pets in family %s \n", family2.getAllPets());
+        System.out.println("adding a child \n");
+        family2.addChild(new Human("Barbie", "Girl", 2008, pet2, 10));
         System.out.printf("this is second family with two kids \n %s \n===\n", family2.toString());
         System.out.printf("There are %d people in the second family \n", family2.countFamily(family2));
-        System.out.printf("This a pet in the second family %s\n", family2.getPet());
+        System.out.printf("There are pets in the second family %s\n", family2.getAllPets());
         for (int i = 0; i < DayOfWeek.values().length; i++) {
-            father2.setSchedule(DayOfWeek.values()[i], fatherHabits[i]);
+            father2.addSchedule(DayOfWeek.values()[i], fatherHabits[i]);
         }
-        System.out.printf("father schedule-->%s \n", Arrays.deepToString(father2.getSchedule()));
+        System.out.printf("father schedule-->%s \n", father2.getSchedule());
         family2.deleteChild(child2);
         System.out.printf("this is second family with one kids \n %s \n===\n", family2.toString());
 //        for (int i = 0; i < 40000; i++) {

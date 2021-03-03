@@ -1,6 +1,7 @@
 package hw7;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Human {
 
@@ -8,34 +9,33 @@ public class Human {
     private String surname;
     private int yearOfBirth;
     private int iq; // 0 ... 100 //
-    private String[][] schedule = new String[1][2];
+    private Map<DayOfWeek, String> schedule = new HashMap<>();
     private Family family;
 
-    public void greetPet(){
-        System.out.printf("Привет %s \n", this.family.getPet());
+    public void greetPet(Pet pet){
+        System.out.printf("Привет %s \n", this.family.getPet(pet));
     }
-    public void feedPet(){
-        System.out.printf("%s иди кушать \n", this.family.getPetName());
+    public void feedPet(Pet pet){
+        System.out.printf("%s иди кушать \n", this.family.getPetName(pet));
     }
-    public void describePet(){
+    public void describePet(Pet pet){
         String trickLevel;
-        trickLevel = this.family.getPetTrickLevel() > 50 ? "очень хитрый" : "почти не хитрый";
-        System.out.printf("У меня есть %s, ему %d, он %s \n", this.family.getPetSpecies(), this.family.getPetAge(), trickLevel);
+        trickLevel = this.family.getPetTrickLevel(pet) > 50 ? "очень хитрый" : "почти не хитрый";
+        System.out.printf("У меня есть %s, ему %d, он %s \n", this.family.getPetSpecies(pet), this.family.getPetAge(pet), trickLevel);
     }
     public String toString(){
-        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s}", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, Arrays.deepToString(this.schedule));
+        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s}", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, this.schedule);
     }
     public Human(String name, String surname, int yearOfBirth){
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
     }
-    public Human(String name, String surname, int yearOfBirth, Pet pet, int iq, String[][] schedule){
+    public Human(String name, String surname, int yearOfBirth, Pet pet, int iq){
         this.name = name;
         this.surname = surname;
         this.yearOfBirth = yearOfBirth;
         this.iq = iq;
-        this.schedule = schedule;
     }
     public String getName(){return this.name;}
     public String setName(String newName){return this.name = newName;}
@@ -51,27 +51,10 @@ public class Human {
     public void setFamily(Family family){
         this.family = family;
     }
-    public void setSchedule(DayOfWeek day, String habit){
-        String[] dayHabit = new String[]{day.name(), habit};
-        String[][] humanSchedule = this.getSchedule();
-        String[][] newSchedule;
-        for (int i = 0; i < humanSchedule.length; i++) {
-            for (int j = 0; j < humanSchedule[i].length; j++) {
-                if(humanSchedule[i][j] == null){
-                    humanSchedule[i] = dayHabit;
-                    this.schedule = humanSchedule;
-                    return;
-                }
-                else if(humanSchedule[i][j] !=null){
-                    newSchedule = Arrays.copyOf(humanSchedule, humanSchedule.length + 1);
-                    newSchedule[newSchedule.length - 1] = dayHabit;
-                    this.schedule = newSchedule;
-                    return;
-                }
-            } break;
-        }
+    public void addSchedule(DayOfWeek day, String habit){
+        this.schedule.put(day, habit);
     }
-    public String[][] getSchedule(){return this.schedule;}
+    public Map<DayOfWeek, String> getSchedule(){return this.schedule;}
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;

@@ -8,7 +8,6 @@ public abstract class Pet {
     private int age;
     private int trickLevel; // 0...100 //
     private final Set<String> habits = new HashSet<>();
-//    private Human owner;
 
     public void eat() {
         System.out.print("Я кушаю! \n");
@@ -26,10 +25,6 @@ public abstract class Pet {
         this.trickLevel = trickLevel;
         this.habits.add(habit);
     }
-//    public String getOwner(){return this.owner.toString();}
-//    public void setOwner(Human owner){
-//        this.owner = owner;
-//    }
     public String getNickname(){
         return this.nickname;
     }
