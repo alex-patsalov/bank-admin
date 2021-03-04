@@ -1,13 +1,14 @@
 package hw7;
 
 public class RoboCat extends Pet {
-    private final Species species = Species.UNKNOWN;
+    private Species species;
+    {
+        super.setSpecies(Species.RoboCat);
+    }
     @Override
     public void respond() {
         System.out.printf("Привет хозяин. Я - %s. Я соскучился! \n", this.getNickname());
     }
-    public Species getSpecies(){return this.species;}
-
     @Override
     public void foul() {
         System.out.print("А я шкодничать не умею \n");

@@ -8,11 +8,14 @@ public abstract class Pet {
     private int age;
     private int trickLevel; // 0...100 //
     private final Set<String> habits = new HashSet<>();
+    private Species species = Species.UNKNOWN;
 
     public void eat() {
         System.out.print("Я кушаю! \n");
     }
     public abstract void respond();
+    public Species getSpecies(){return this.species;}
+    public void setSpecies(Species species){this.species = species;}
     public String toString() {
         return String.format("%s{nickname='%s', age=%d, tricklevel=%d, habits=%s}", getSpecies(), this.nickname, this.age, this.trickLevel, this.habits);
     }
@@ -39,13 +42,12 @@ public abstract class Pet {
     public int setAge(int newAge){
         return this.age = newAge;
     }
-    public abstract Species getSpecies();
+//    public abstract Species getSpecies();
     public Set<String> getHabits(){return this.habits;}
     public void addHabit(String habit){
         this.habits.add(habit);
     }
     public boolean deleteHabit(String habit){return this.habits.contains(habit) && this.habits.remove(habit);}
-
     public abstract void foul();
     @Override
     public boolean equals(Object obj) {
