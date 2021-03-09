@@ -8,26 +8,31 @@ public class CollectionFamilyDao implements FamilyDao{
     final List<Family> familiesDB = new ArrayList<>();
     @Override
     public List<Family> getAllFamilies() {
-        return null;
+        return this.familiesDB;
     }
 
     @Override
     public Family getFamilyByIndex(int index) {
-        return null;
+        return this.familiesDB.get(index);
     }
 
     @Override
-    public boolean deleteFamily(int index) {
-        return false;
+    public Family deleteFamily(int index) {
+        return this.familiesDB.remove(index);
     }
 
     @Override
     public boolean deleteFamily(Family family) {
-        return false;
+        return this.familiesDB.remove(family);
     }
 
     @Override
     public void saveFamily(Family family) {
-
+        if(this.familiesDB.contains(family)){
+            int index = this.familiesDB.indexOf(family);
+            this.familiesDB.set(index, family);
+        } else {
+            this.familiesDB.add(family);
+        }
     }
 }
