@@ -42,6 +42,7 @@ public class MainApp {
         FC.addPet(1, new Dog("Charlie"));
         System.out.printf("Checking if dog is added ->> %s\n", family4.getAllPets());
         System.out.printf("New baby --> %s \n", FC.bornChild(family4, "female", "male"));
-//        FC.deleteAllChildrenOlderThen(0);
+        FC.deleteAllChildrenOlderThen(0);
+        System.out.printf("deleted all kids except for the newly-born %s", FC.getAllFamilies());
     }
 }

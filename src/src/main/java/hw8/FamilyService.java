@@ -3,6 +3,7 @@ package hw8;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FamilyService {
     public FamilyDao FamilyDao;
@@ -49,13 +50,12 @@ public class FamilyService {
         return familiesBiggerThan;
     }
 
-    public List<Family> getFamiliesLessThan(int number){ // can be a mistake
+    public List<Family> getFamiliesLessThan(int number){
         List<Family> familiesLessThan = new ArrayList<>();
         List<Family> allFamilies = getAllFamilies();
         allFamilies.forEach( f ->{
             int qnty = f.countFamily(f);
             if(qnty < number) {
-//                f.toString();
                 familiesLessThan.add(f);
             }
         });
@@ -117,19 +117,26 @@ public class FamilyService {
         return child;
     }
 
-    public void deleteAllChildrenOlderThen(int age){
-        List<Family> allFamilies = FamilyDao.getAllFamilies();
-        allFamilies.forEach(f ->{
-            ArrayList<Human> allKids = f.getChildren();
-            allKids.forEach(k ->{
-                int kidAge = LocalDate.now().getYear() - k.getYearOfBirth();
-                if(kidAge > age) f.deleteChild(k);
-//                {
-//                    Family ff = k.getFamily();
-//                    f.deleteChild(k);
-//                    FamilyDao.saveFamily(f);
-//                }
-            });
-        });
+//    public void deleteAllChildrenOlderThen(int age){
+//        List<Family> allFamilies = FamilyDao.getAllFamilies();
+//        allFamilies.forEach(f ->{
+//            ArrayList<Human> allKids = f.getChildren();
+//            allKids.forEach(k ->{
+//                int kidAge = LocalDate.now().getYear() - k.getYearOfBirth();
+//                if(kidAge > age) f.deleteChild(k);
+////                {
+////                    Family ff = k.getFamily();
+////                    f.deleteChild(k);
+////                    FamilyDao.saveFamily(f);
+////                }
+//            });
+//        });
+//    }
+
+    public List<Family> deleteAllChildrenOlderThen(int age) {
+        return  FamilyDao.getAllFamilies()
+                .stream()
+                .peek(f -> f.getChildren().removeIf(h->LocalDate.now().getYear() - h.getYearOfBirth()>age))
+                .collect(Collectors.toList());
     }
 }
