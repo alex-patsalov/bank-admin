@@ -47,7 +47,8 @@ public class Human {
     public Human setMother(Woman mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}
     public Human setFather(Man father){return this.family.setFather(father);}
-    public String getFamily(){return this.family.toString();}
+    public String getFamilyString(){return this.family.toString();}
+    public Family getFamily(){return this.family;}
     public void setFamily(Family family){
         this.family = family;
     }

@@ -44,6 +44,7 @@ public class Family {
     public Human setMother(Woman mother){return this.mother = mother;}
     public String getFather(){return this.father.toString();}
     public Human setFather(Man father){return this.father = father;}
+    public String getFamilyName(Family family){return this.father.getSurname();}
     public int getChildrenQnty(){return this.children.size();}
     public ArrayList<Human> getChildren(){return this.children;}
     public ArrayList<Human> addChild(Human child){
