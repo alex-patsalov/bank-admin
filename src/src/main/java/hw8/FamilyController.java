@@ -10,7 +10,9 @@ public class FamilyController {
     }
 
     public List<Family> getAllFamilies(){return FamilyService.getAllFamilies();}
-    public void createNewFamily(Woman woman, Man man){FamilyService.createNewFamily(woman, man);}
+    public Family createNewFamily(Woman woman, Man man){return FamilyService.createNewFamily(woman, man);}
+    public Family createNewFamily(Woman woman, Man man, Human child){return FamilyService.createNewFamily(woman, man, child);}
+    public Family createNewFamily(Woman woman, Man man, Human child, Pet pet){return FamilyService.createNewFamily(woman, man, child, pet);}
     public int countFamilies(){return FamilyService.countFamilies();}
     public void displayAllFamilies(){FamilyService.displayAllFamilies();}
     public List<Family> getFamiliesBiggerThan(int number){return FamilyService.getFamiliesBiggerThan(number);}

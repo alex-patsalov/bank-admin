@@ -27,12 +27,13 @@ public class CollectionFamilyDao implements FamilyDao{
     }
 
     @Override
-    public void saveFamily(Family family) {
+    public Family saveFamily(Family family) {
         if(this.familiesDB.contains(family)){
             int index = this.familiesDB.indexOf(family);
             this.familiesDB.set(index, family);
         } else {
             this.familiesDB.add(family);
         }
+        return family;
     }
 }

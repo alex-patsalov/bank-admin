@@ -15,17 +15,24 @@ public class FamilyService {
         return FamilyDao.getAllFamilies();
     }
 
-    public void createNewFamily(Woman woman, Man man) {
-        FamilyDao.saveFamily(new Family(woman, man));
+    public Family createNewFamily(Woman woman, Man man) {
+        return FamilyDao.saveFamily(new Family(woman, man));
+    }
+    public Family createNewFamily(Woman woman, Man man, Human child) {
+        return FamilyDao.saveFamily(new Family(woman, man, child));
+    }
+
+    public Family createNewFamily(Woman woman, Man man, Human child, Pet pet) {
+        return FamilyDao.saveFamily(new Family(woman, man, child, pet));
     }
 
     public int countFamilies() {
         return FamilyDao.getAllFamilies().size();
     }
 
-    public void displayAllFamilies() { // can be a mistake
+    public void displayAllFamilies() {
         List<Family> allFamilies = FamilyDao.getAllFamilies();
-        allFamilies.forEach( f -> System.out.printf("This is family %s", f.toString()));
+        allFamilies.forEach( f -> System.out.printf("This is a displayed family %s \n", f.toString()));
     }
 
     public List<Family> getFamiliesBiggerThan(int number){ // can be a mistake
