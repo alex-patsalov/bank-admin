@@ -30,12 +30,13 @@ public class FamilyService {
         return FamilyDao.getAllFamilies().size();
     }
 
-    public void displayAllFamilies() {
+    public String displayAllFamilies() {
         List<Family> allFamilies = FamilyDao.getAllFamilies();
-        allFamilies.forEach( f -> System.out.printf("This is a displayed family %s \n", f.toString()));
+        System.out.printf("This is a displayed family %s \n", allFamilies);
+        return allFamilies.toString();
     }
 
-    public List<Family> getFamiliesBiggerThan(int number){ // can be a mistake
+    public List<Family> getFamiliesBiggerThan(int number){
         List<Family> familiesBiggerThan = new ArrayList<>();
         List<Family> allFamilies = getAllFamilies();
         allFamilies.forEach( f ->{
@@ -54,7 +55,7 @@ public class FamilyService {
         allFamilies.forEach( f ->{
             int qnty = f.countFamily(f);
             if(qnty < number) {
-                f.toString();
+//                f.toString();
                 familiesLessThan.add(f);
             }
         });
@@ -74,8 +75,8 @@ public class FamilyService {
         return familiesExact.size();
     }
 
-    public void deleteFamilyByIndex(int index){
-        FamilyDao.deleteFamily(index);
+    public Family deleteFamilyByIndex(int index){
+        return FamilyDao.deleteFamily(index);
     }
 
     public Family getFamilyById(int index){
@@ -87,10 +88,11 @@ public class FamilyService {
         return f.getAllPets();
     }
 
-    public void addPet(int index, Pet pet){
+    public boolean addPet(int index, Pet pet){
         Family f = FamilyDao.getFamilyByIndex(index);
         f.addPet(pet);
         FamilyDao.saveFamily(f);
+        return true;
     }
 
     public Family adoptChild(Family family, Human child){
@@ -103,9 +105,6 @@ public class FamilyService {
     }
 
     public Human bornChild(Family family, String fName, String mName){
-        List<Family> allFamilies = getAllFamilies();
-        int index = allFamilies.indexOf(family);
-        Family selectedFamily = allFamilies.get(index);
         int rand = (int)(Math.random() * 2);
         Human child;
         if(rand == 0){
@@ -124,11 +123,12 @@ public class FamilyService {
             ArrayList<Human> allKids = f.getChildren();
             allKids.forEach(k ->{
                 int kidAge = LocalDate.now().getYear() - k.getYearOfBirth();
-                if(kidAge > age) {
-                    Family ff = k.getFamily();
-                    ff.deleteChild(k);
-                    FamilyDao.saveFamily(ff);
-                }
+                if(kidAge > age) f.deleteChild(k);
+//                {
+//                    Family ff = k.getFamily();
+//                    f.deleteChild(k);
+//                    FamilyDao.saveFamily(f);
+//                }
             });
         });
     }
