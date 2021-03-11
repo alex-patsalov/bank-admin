@@ -117,22 +117,6 @@ public class FamilyService {
         return child;
     }
 
-//    public void deleteAllChildrenOlderThen(int age){
-//        List<Family> allFamilies = FamilyDao.getAllFamilies();
-//        allFamilies.forEach(f ->{
-//            ArrayList<Human> allKids = f.getChildren();
-//            allKids.forEach(k ->{
-//                int kidAge = LocalDate.now().getYear() - k.getYearOfBirth();
-//                if(kidAge > age) f.deleteChild(k);
-////                {
-////                    Family ff = k.getFamily();
-////                    f.deleteChild(k);
-////                    FamilyDao.saveFamily(f);
-////                }
-//            });
-//        });
-//    }
-
     public List<Family> deleteAllChildrenOlderThen(int age) {
         return  FamilyDao.getAllFamilies()
                 .stream()
