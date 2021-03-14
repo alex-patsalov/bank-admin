@@ -1,5 +1,8 @@
 package hw9;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +10,7 @@ public class Human {
 
     private String name;
     private String surname;
-    private int yearOfBirth;
+    private long birthDate;
     private int iq; // 0 ... 100 //
     private final Map<DayOfWeek, String> schedule = new HashMap<>();
     private Family family;
@@ -24,25 +27,36 @@ public class Human {
         System.out.printf("У меня есть %s, ему %d, он %s \n", this.family.getPetSpecies(pet), this.family.getPetAge(pet), trickLevel);
     }
     public String toString(){
-        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s}", this.getClass().getSimpleName(), this.name, this.surname, this.yearOfBirth, this.iq, this.schedule);
+        return String.format("%s{name='%s', surname='%s', year='%d', iq='%d', habits=%s}", this.getClass().getSimpleName(), this.name, this.surname, this.birthDate, this.iq, this.schedule);
     }
-    public Human(String name, String surname, int yearOfBirth){
+    public Human(String name, String surname, String DOB){
         this.name = name;
         this.surname = surname;
-        this.yearOfBirth = yearOfBirth;
+        this.birthDate = setDOB(DOB);
     }
-    public Human(String name, String surname, int yearOfBirth, Pet pet, int iq){
+    public Human(String name, String surname, String DOB, Pet pet, int iq){
         this.name = name;
         this.surname = surname;
-        this.yearOfBirth = yearOfBirth;
+        this.birthDate = setDOB(DOB);
         this.iq = iq;
     }
     public String getName(){return this.name;}
     public String setName(String newName){return this.name = newName;}
     public String getSurname(){return this.surname;}
     public String setSurname(String newSurname){return this.surname = newSurname;}
-    public int getYearOfBirth(){return this.yearOfBirth;}
-    public int setYearOfBirth(int newYear){return this.yearOfBirth = newYear;}
+    public long getBirthDate(){return this.birthDate;}
+    public long setDOB(String DOB){
+        SimpleDateFormat format = new SimpleDateFormat();
+        format.applyPattern("dd/MM/yyyy");
+        Date date = null;
+        try {
+            date= format.parse(DOB);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long dob = date.getTime();
+        return this.birthDate = dob;
+    }
     public String getMother(){return this.family.getMother();}
     public Human setMother(Woman mother){return this.family.setMother(mother);}
     public String getFather(){return this.family.getFather();}
@@ -69,7 +83,7 @@ public class Human {
     public int hashCode(){
         int code = 11;
         int random = 7;
-        code = random*code + this.yearOfBirth;
+        code = random*code + (int)(this.birthDate);
         return code;
     }
     protected void finalize(){

@@ -6,17 +6,17 @@ public class MainApp {
 
     public static void main(String[] args) {
         FamilyController FC = new FamilyController();
-        Woman woman1 = new Woman("Jane", "Ostin", 1965);
-        Man man1 = new Man("Johnathan", "Kings", 1955);
+        Woman woman1 = new Woman("Jane", "Ostin", "21/06/1995");
+        Man man1 = new Man("Johnathan", "Kings", "21/06/1995");
         Family family1 = FC.createNewFamily(woman1, man1);
         System.out.printf("one family -->> %s \n", FC.getAllFamilies());
-        Woman woman2 = new Woman("Kate", "Eliz", 1880);
-        Man man2 = new Man("Myan", "Teng", 1870);
+        Woman woman2 = new Woman("Kate", "Eliz", "21/06/1995");
+        Man man2 = new Man("Myan", "Teng", "21/06/1995");
         Family family2 = FC.createNewFamily(woman2, man2);
-        Woman woman3 = new Woman("Aleksia", "Chickens", 1978);
-        Man man3 = new Man("Mike", "Tontik", 1960);
-        Human kid1 = new Human("Baby", "Tontik", 2005);
-        Human kid2 = new Human("Minnie", "Mintik", 2008);
+        Woman woman3 = new Woman("Aleksia", "Chickens", "21/06/1995");
+        Man man3 = new Man("Mike", "Tontik", "21/06/1995");
+        Human kid1 = new Human("Baby", "Tontik", "21/06/1995");
+        Human kid2 = new Human("Minnie", "Mintik", "21/06/1995");
         Family family3 = FC.createNewFamily(woman3, man3, kid1);
         System.out.printf("two (all) families -->> %s \n", FC.getAllFamilies());
         System.out.printf("How many families are there as for now? - %d \n", FC.countFamilies());
@@ -33,10 +33,10 @@ public class MainApp {
         Family family111 = FC.adoptChild(family11, kid2);
         System.out.printf("Double-check if the family #1 was created again and kid is adopted -> %s \n", FC.getAllFamilies());
         System.out.printf("Get family by index --> %s \n", FC.getFamilyByIndex(2));
-        Woman woman4 = new Woman("Aleksia", "Chickens", 1978);
-        Man man4 = new Man("Mike", "Tontik", 1960);
+        Woman woman4 = new Woman("Aleksia", "Chickens", "21/06/1995");
+        Man man4 = new Man("Mike", "Tontik", "21/06/1995");
         DomesticCat cat = new DomesticCat("lazy");
-        Human child4 = new Human("Jynnie", "Newport", 2004);
+        Human child4 = new Human("Jynnie", "Newport", "21/06/1995");
         Family family4 = FC.createNewFamily(woman4, man4, child4, cat);
         System.out.printf("Get pets from family #4 --> %s \n", family4.getAllPets());
         FC.addPet(1, new Dog("Charlie"));

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FamilyService {
-    public hw9.FamilyDao FamilyDao;
+    public FamilyDao FamilyDao;
 
     public FamilyService() {
         FamilyDao = new CollectionFamilyDao();
@@ -108,9 +108,9 @@ public class FamilyService {
         int rand = (int)(Math.random() * 2);
         Human child;
         if(rand == 0){
-            child = new Human(fName, family.getFamilyName(family), LocalDate.now().getYear());
+            child = new Human(fName, family.getFamilyName(family), LocalDate.now().toString()); // wrong
         } else{
-            child = new Human(mName, family.getFamilyName(family), LocalDate.now().getYear());
+            child = new Human(mName, family.getFamilyName(family), LocalDate.now().toString()); // wrong
         }
         family.addChild(child);
         FamilyDao.saveFamily(family);
@@ -120,7 +120,7 @@ public class FamilyService {
     public List<Family> deleteAllChildrenOlderThen(int age) {
         return  FamilyDao.getAllFamilies()
                 .stream()
-                .peek(f -> f.getChildren().removeIf(h->LocalDate.now().getYear() - h.getYearOfBirth()>age))
+                .peek(f -> f.getChildren().removeIf(h->LocalDate.now().getYear() - h.getBirthDate()>age))
                 .collect(Collectors.toList());
     }
 }

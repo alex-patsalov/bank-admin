@@ -3,7 +3,7 @@ package hw9;
 import java.util.List;
 
 public class FamilyController {
-    public hw9.FamilyService FamilyService;
+    public FamilyService FamilyService;
 
     public FamilyController() {
         FamilyService = new FamilyService();
