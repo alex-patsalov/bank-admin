@@ -31,27 +31,26 @@ public class FamilyService {
     }
 
     public void displayAllFamilies() {
-        List<Family> allFamilies = FamilyDao.getAllFamilies();
-        allFamilies.forEach(System.out::println);
+        FamilyDao.getAllFamilies().forEach(System.out::println);
     }
 
     public List<Family> getFamiliesBiggerThan(int number){
-        List<Family> allFamilies = getAllFamilies();
-        return allFamilies.stream()
+        return FamilyDao.getAllFamilies()
+                .stream()
                 .filter(f -> f.countFamily(f) > number)
                 .collect(Collectors.toList());
     }
 
     public List<Family> getFamiliesLessThan(int number){
-        List<Family> allFamilies = getAllFamilies();
-        return allFamilies.stream()
+        return FamilyDao.getAllFamilies()
+                .stream()
                 .filter(f -> f.countFamily(f) < number)
                 .collect(Collectors.toList());
     }
 
     public int countFamiliesWithMemberNumber(int number){
-        List<Family> allFamilies = getAllFamilies();
-        return (int) allFamilies.stream()
+        return (int) FamilyDao.getAllFamilies()
+                .stream()
                 .filter(f -> f.countFamily(f) == number).count();
     }
 
