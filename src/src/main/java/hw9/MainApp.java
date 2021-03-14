@@ -20,9 +20,9 @@ public class MainApp {
         Family family3 = FC.createNewFamily(woman3, man3, kid1);
         System.out.printf("two (all) families -->> %s \n", FC.getAllFamilies());
         System.out.printf("How many families are there as for now? - %d \n", FC.countFamilies());
-        System.out.printf("This is start of display of all families \n");
+        System.out.print("This is start of display of all families \n");
         FC.displayAllFamilies();
-        System.out.printf("This is end of display of all families \n");
+        System.out.print("This is end of display of all families \n");
         System.out.printf("Families bigger than 2 %s \n", FC.getFamiliesBiggerThan(2));
         System.out.printf("Families less than 3 %s \n", FC.getFamiliesLessThan(3));
         System.out.printf("How many families have 1 kid? --> %d \n", FC.countFamiliesWithMemberNumber(3));
@@ -43,6 +43,7 @@ public class MainApp {
         System.out.printf("Checking if dog is added ->> %s\n", family4.getAllPets());
         System.out.printf("New baby --> %s \n", FC.bornChild(family4, "female", "male"));
         FC.deleteAllChildrenOlderThen(0);
-        System.out.printf("deleted all kids except for the newly-born %s", FC.getAllFamilies());
+        System.out.printf("deleted all kids except for the newly-born %s\n", FC.getAllFamilies());
+        System.out.printf("describeAge in action -->> %s",child4.describeAge());
     }
 }

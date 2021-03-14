@@ -125,7 +125,7 @@ public class FamilyService {
     public List<Family> deleteAllChildrenOlderThen(int age) {
         return  FamilyDao.getAllFamilies()
                 .stream()
-                .peek(f -> f.getChildren().removeIf(h->LocalDate.now().getYear() - h.getBirthDate()>age))
+                .peek(f -> f.getChildren().removeIf(h->LocalDate.now().getYear() - h.getAge()>age))
                 .collect(Collectors.toList());
     }
 }
