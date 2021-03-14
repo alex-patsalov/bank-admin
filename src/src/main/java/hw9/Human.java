@@ -44,10 +44,12 @@ public class Human {
     public String setName(String newName){return this.name = newName;}
     public String getSurname(){return this.surname;}
     public String setSurname(String newSurname){return this.surname = newSurname;}
-    public long getBirthDate(){return this.birthDate;}
+    public String getBirthDate(){
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
+        return formatForDateNow.format(this.birthDate);
+    }
     public long setDOB(String DOB){
-        SimpleDateFormat format = new SimpleDateFormat();
-        format.applyPattern("dd/MM/yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         Date date = null;
         try {
             date= format.parse(DOB);

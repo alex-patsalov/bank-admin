@@ -1,7 +1,9 @@
 package hw9;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -103,14 +105,17 @@ public class FamilyService {
         FamilyDao.saveFamily(selectedFamily);
         return selectedFamily;
     }
-
+    public String dobToString(Date date){
+        SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd/MM/yyyy");
+        return formatForDateNow.format(date);
+    }
     public Human bornChild(Family family, String fName, String mName){
         int rand = (int)(Math.random() * 2);
         Human child;
         if(rand == 0){
-            child = new Human(fName, family.getFamilyName(family), LocalDate.now().toString()); // wrong
+            child = new Human(fName, family.getFamilyName(family), dobToString(new Date()));
         } else{
-            child = new Human(mName, family.getFamilyName(family), LocalDate.now().toString()); // wrong
+            child = new Human(mName, family.getFamilyName(family), dobToString(new Date()));
         }
         family.addChild(child);
         FamilyDao.saveFamily(family);
