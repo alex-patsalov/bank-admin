@@ -12,6 +12,7 @@ public class Human {
     private int iq; // 0 ... 100 //
     private final Map<DayOfWeek, String> schedule = new HashMap<>();
     private Family family;
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 
     public void greetPet(Pet pet){
         System.out.printf("Привет %s \n", this.family.getPet(pet));
@@ -82,7 +83,7 @@ public class Human {
         return this.birthDate = dob;
     }
     public String getDOB(){
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         return format.format(this.birthDate);
     }
     public int getAge(){

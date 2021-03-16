@@ -45,7 +45,6 @@ public abstract class Pet {
     public int setAge(int newAge){
         return this.age = newAge;
     }
-//    public abstract Species getSpecies();
     public Set<String> getHabits(){return this.habits;}
     public void addHabit(String habit){
         this.habits.add(habit);
