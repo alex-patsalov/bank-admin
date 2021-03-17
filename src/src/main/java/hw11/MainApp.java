@@ -1,9 +1,24 @@
 package hw11;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class MainApp {
     public static FamilyController FC = new FamilyController();
+    public static Scanner sc = new Scanner(System.in);
+
+    public static Map<Integer, Runnable> cases = new HashMap<Integer,Runnable>() {{
+        put(1, () -> FC.makeTestFamilies(5));
+        put(2, () ->FC.displayAllFamilies());
+        put(3, MainApp::case3);
+        put(4, MainApp::case4);
+        put(5, MainApp::case5);
+        put(6, MainApp::createFamily);
+        put(7, MainApp::case7);
+        put(8, MainApp::case8);
+        put(9, MainApp::case9);
+    }};
 
     public static void printMainMenu() {
         System.out.print("- 1. Заполнить тестовыми данными (автоматом создать несколько семей и сохранить их в базе)\n" +
@@ -16,9 +31,8 @@ public class MainApp {
                 "- 8. Редактировать семью по индексу семьи в общем списке \n" +
                 "- 9. Удалить всех детей старше возраста (во всех семьях удаляются дети старше указанного возраста - будем считать, что они выросли)\n");
     }
-
     public static void createFamily() {
-        Scanner sc = new Scanner(System.in);
+        String buffer1 = sc.nextLine();
         System.out.print("Введи имя матери: ");
         String motherName = sc.nextLine();
         System.out.print("Введи фамилию матери: ");
@@ -27,7 +41,7 @@ public class MainApp {
         String dobM = sc.nextLine();
         System.out.print("Введи iq матери: ");
         int iqM = sc.nextInt();
-        if(motherName == null || motherSurname == null || dobM == null) throw new IllegalArgumentException();
+        if (motherName == null || motherSurname == null || dobM == null) throw new IllegalArgumentException();
         Woman mother = new Woman(motherName, motherSurname, dobM, iqM);
         String buffer = sc.nextLine();
         System.out.print("Введи имя отца: ");
@@ -38,34 +52,30 @@ public class MainApp {
         String dobF = sc.nextLine();
         System.out.print("Введи iq отца: ");
         int iqF = sc.nextInt();
-        if(fatherName == null || fatherSurname == null || dobF == null) throw new IllegalArgumentException();
+        if (fatherName == null || fatherSurname == null || dobF == null) throw new IllegalArgumentException();
         Man father = new Man(fatherName, fatherSurname, dobF, iqF);
         FC.createNewFamily(mother, father);
     }
-
     public static void makeABaby() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Введи порядковый номер семьи: ");
         int index = sc.nextInt();
-        if(index < 0) throw new IllegalArgumentException();
+        if (index < 0) throw new IllegalArgumentException();
         Family family = FC.getFamilyByIndex(index - 1);
-        if(family.getChildrenQnty() > 2) throw new FamilyOverFlownException("Maybe it is enough?");
+        if (family.getChildrenQnty() > 2) throw new FamilyOverFlownException("Maybe it is enough?");
         String buffer = sc.nextLine();
         System.out.print("Какое имя дать мальчику? ");
         String mName = sc.nextLine();
         System.out.print("А девочке? ");
         String fName = sc.nextLine();
-        if(mName == null || fName == null) throw new IllegalArgumentException();
+        if (mName == null || fName == null) throw new IllegalArgumentException();
         FC.bornChild(family, mName, fName);
     }
-
     public static void adoptChild() {
-        Scanner sc = new Scanner(System.in);
         System.out.print("Введи номер семьи: ");
         int index = sc.nextInt();
-        if(index < 0) throw new IllegalArgumentException();
+        if (index < 0) throw new IllegalArgumentException();
         Family f = FC.getFamilyByIndex(index - 1);
-        if(f.getChildrenQnty() > 2) throw new FamilyOverFlownException("Maybe it is enough?");
+        if (f.getChildrenQnty() > 2) throw new FamilyOverFlownException("Maybe it is enough?");
         String buffer = sc.nextLine();
         System.out.print("Введи имя ребенка: ");
         String name = sc.nextLine();
@@ -75,83 +85,67 @@ public class MainApp {
         String dob = sc.nextLine();
         System.out.print("Введи iq ребенка: ");
         int iq = sc.nextInt();
-        if(name == null || surname == null || dob == null) throw new IllegalArgumentException();
+        if (name == null || surname == null || dob == null) throw new IllegalArgumentException();
         Human kid = new Human(name, surname, dob, iq);
         FC.adoptChild(f, kid);
     }
-
+    public static void case3(){
+        System.out.print("Введи количество:");
+        int numberMoreThan = sc.nextInt();
+        if (numberMoreThan < 2) throw new IllegalArgumentException();
+        FC.getFamiliesBiggerThan(numberMoreThan).forEach(System.out::println);
+    }
+    public static void case4(){
+        System.out.print("Введи количество:");
+        int numberLessThan = sc.nextInt();
+        if (numberLessThan < 2) throw new IllegalArgumentException();
+        FC.getFamiliesLessThan(numberLessThan).forEach(System.out::println);
+    }
+    public static void case5(){
+        System.out.print("Введи количество:");
+        int exactNumber = sc.nextInt();
+        if (exactNumber < 2) throw new IllegalArgumentException();
+        int i = FC.countFamiliesWithMemberNumber(exactNumber);
+        System.out.printf("Всего %d семей \n", i);
+    }
+    public static void case7(){
+        System.out.print("Введи порядковый номер:");
+        int familyNumber = sc.nextInt();
+        if (familyNumber < 0) throw new IllegalArgumentException();
+        FC.deleteFamilyByIndex(familyNumber - 1);
+    }
+    public static void case8(){
+        System.out.println("1. Родить ребенка");
+        System.out.println("2. Усыновить ребенка");
+        System.out.println("3. Вернуться назад");
+        System.out.print("Что делаем? ");
+        int option = sc.nextInt();
+        switch (option) {
+            case 1:
+                makeABaby();
+                break;
+            case 2:
+                adoptChild();
+                break;
+            case 3:
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + option);
+        }
+    }
+    public static void case9(){
+        System.out.print("Введи возраст: ");
+        int age = sc.nextInt();
+        if (age < 1) throw new IllegalArgumentException();
+        FC.deleteAllChildrenOlderThen(age);
+    }
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
         for (; ; ) {
             printMainMenu();
             System.out.print("Выбери пункт: ");
             int mainMenuSelection = sc.nextInt();
-            switch (mainMenuSelection) {
-                case 1:
-                    FC.makeTestFamilies(5);
-                    break;
-                case 2:
-                    FC.displayAllFamilies();
-                    break;
-                case 3:
-                    System.out.print("Введи количество:");
-                    int numberMoreThan = sc.nextInt();
-                    if(numberMoreThan < 2) throw new IllegalArgumentException();
-                    FC.getFamiliesBiggerThan(numberMoreThan).forEach(System.out::println);
-                    break;
-                case 4:
-                    System.out.print("Введи количество:");
-                    int numberLessThan = sc.nextInt();
-                    if(numberLessThan < 2) throw new IllegalArgumentException();
-                    FC.getFamiliesLessThan(numberLessThan).forEach(System.out::println);
-                    break;
-                case 5:
-                    System.out.print("Введи количество:");
-                    int exactNumber = sc.nextInt();
-                    if(exactNumber < 2) throw new IllegalArgumentException();
-                    int i = FC.countFamiliesWithMemberNumber(exactNumber);
-                    System.out.printf("Всего %d семей \n", i);
-                    break;
-                case 6:
-                    createFamily();
-                    break;
-                case 7:
-                    System.out.print("Введи порядковый номер:");
-                    int familyNumber = sc.nextInt();
-                    if(familyNumber < 0) throw new IllegalArgumentException();
-                    FC.deleteFamilyByIndex(familyNumber - 1);
-                    break;
-                case 8:
-                    System.out.println("1. Родить ребенка");
-                    System.out.println("2. Усыновить ребенка");
-                    System.out.println("3. Вернуться назад");
-                    System.out.print("Что делаем? ");
-                    int option = sc.nextInt();
-                    switch (option) {
-                        case 1:
-                            makeABaby();
-                            break;
-                        case 2:
-                            adoptChild();
-                            break;
-                        case 3:
-                            break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + option);
-                    }
-                    break;
-                case 9:
-                    System.out.print("Введи возраст: ");
-                    int age = sc.nextInt();
-                    if(age < 1) throw new IllegalArgumentException();
-                    FC.deleteAllChildrenOlderThen(age);
-                    break;
-                case 0:
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + mainMenuSelection);
-            }
+            cases.get(mainMenuSelection).run();
         }
     }
 }

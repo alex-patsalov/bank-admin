@@ -14,7 +14,9 @@ public class FamilyController {
     public Family createNewFamily(Woman woman, Man man, Human child){return FamilyService.createNewFamily(woman, man, child);}
     public Family createNewFamily(Woman woman, Man man, Human child, Pet pet){return FamilyService.createNewFamily(woman, man, child, pet);}
     public int countFamilies(){return FamilyService.countFamilies();}
-    public void displayAllFamilies(){FamilyService.displayAllFamilies();}
+    public void displayAllFamilies(){
+        FamilyService.displayAllFamilies();
+    }
     public List<Family> getFamiliesBiggerThan(int number){return FamilyService.getFamiliesBiggerThan(number);}
     public List<Family> getFamiliesLessThan(int number){return FamilyService.getFamiliesLessThan(number);}
     public int countFamiliesWithMemberNumber(int number){return FamilyService.countFamiliesWithMemberNumber(number);}
