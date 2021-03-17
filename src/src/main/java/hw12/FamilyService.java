@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class FamilyService {
     public FamilyDao FamilyDao;
 
-    public FamilyService() {
+    public FamilyService() throws IOException, ClassNotFoundException {
         FamilyDao = new CollectionFamilyDao();
     }
 

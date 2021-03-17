@@ -7,7 +7,18 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class MainApp {
-    public static FamilyController FC = new FamilyController();
+    public static FamilyController FC;
+
+    static {
+        try {
+            FC = new FamilyController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Scanner sc = new Scanner(System.in);
 
     public static Map<Integer, Runnable> cases = new HashMap<Integer,Runnable>() {{
@@ -104,24 +115,43 @@ public class MainApp {
         Human kid = new Human(name, surname, dob, iq);
         FC.adoptChild(f, kid);
     }
-    public static void case3(){
+    public static void case3() {
         System.out.print("Введи количество:");
         int numberMoreThan = sc.nextInt();
-        if (numberMoreThan < 2) throw new IllegalArgumentException();
-        FC.getFamiliesBiggerThan(numberMoreThan).forEach(System.out::println);
+        if (numberMoreThan > 2){
+            try {
+                FC.getFamiliesBiggerThan(numberMoreThan).forEach(System.out::println);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-    public static void case4(){
+    public static void case4() {
         System.out.print("Введи количество:");
         int numberLessThan = sc.nextInt();
-        if (numberLessThan < 2) throw new IllegalArgumentException();
-        FC.getFamiliesLessThan(numberLessThan).forEach(System.out::println);
+        if (numberLessThan > 2){
+            try {
+                FC.getFamiliesLessThan(numberLessThan).forEach(System.out::println);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-    public static void case5(){
+    public static void case5() {
         System.out.print("Введи количество:");
         int exactNumber = sc.nextInt();
-        if (exactNumber < 2) throw new IllegalArgumentException();
-        int i = FC.countFamiliesWithMemberNumber(exactNumber);
-        System.out.printf("Всего %d семей \n", i);
+        if (exactNumber >= 2) {
+            int i = 0;
+            try {
+                i = FC.countFamiliesWithMemberNumber(exactNumber);
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            System.out.printf("Всего %d семей \n", i);
+        }
+
     }
     public static void case7(){
         System.out.print("Введи порядковый номер:");

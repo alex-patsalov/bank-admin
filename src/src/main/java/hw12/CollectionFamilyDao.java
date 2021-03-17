@@ -6,7 +6,11 @@ import java.util.List;
 
 public class CollectionFamilyDao implements FamilyDao, Serializable {
 
-    final List<Family> familiesDB = new ArrayList<>();
+    final List<Family> familiesDB = getData();
+
+    public CollectionFamilyDao() throws IOException, ClassNotFoundException {
+    }
+
     @Override
     public List<Family> getAllFamilies() {
         return this.familiesDB;
@@ -35,6 +39,7 @@ public class CollectionFamilyDao implements FamilyDao, Serializable {
         } else {
             this.familiesDB.add(family);
         }
+
         return family;
     }
 
