@@ -12,9 +12,7 @@ public class MainApp {
     static {
         try {
             FC = new FamilyController();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -48,7 +46,7 @@ public class MainApp {
 
     public static void printMainMenu() {
         System.out.print("- 1. Заполнить тестовыми данными (автоматом создать несколько семей и сохранить их в базе)\n" +
-                "- 2. Отобразить весь список семей (отображает список всех семей с индексацией, начинающейся с 1)\n" +
+                "- 2. Отобразить весь список семей с базы данных\n" +
                 "- 3. Отобразить список семей, где количество людей больше заданного\n" +
                 "- 4. Отобразить список семей, где количество людей меньше заданного\n" +
                 "- 5. Подсчитать количество семей, где количество членов равно\n" +

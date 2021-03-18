@@ -6,11 +6,10 @@ import java.util.List;
 
 public class CollectionFamilyDao implements FamilyDao, Serializable {
 
-    final List<Family> familiesDB = getData();
+    final List<Family> familiesDB = new ArrayList<>();
 
     public CollectionFamilyDao() throws IOException, ClassNotFoundException {
     }
-
     @Override
     public List<Family> getAllFamilies() {
         return this.familiesDB;
@@ -22,13 +21,27 @@ public class CollectionFamilyDao implements FamilyDao, Serializable {
     }
 
     @Override
-    public Family deleteFamily(int index) {
-        return this.familiesDB.remove(index);
+    public boolean deleteFamily(int index) {
+        try{
+            List<Family> data = this.getData();
+            data.remove(index);
+            this.saveData(data);
+        } catch (IllegalArgumentException | IOException | ClassNotFoundException e){
+            e.getMessage();
+        }
+        return true;
     }
 
     @Override
     public boolean deleteFamily(Family family) {
-        return this.familiesDB.remove(family);
+        try{
+            List<Family> data = this.getData();
+            data.remove(family);
+            this.saveData(data);
+        } catch (IllegalArgumentException | IOException | ClassNotFoundException e){
+            e.getMessage();
+        }
+        return true;
     }
 
     @Override
@@ -36,8 +49,23 @@ public class CollectionFamilyDao implements FamilyDao, Serializable {
         if(this.familiesDB.contains(family)){
             int index = this.familiesDB.indexOf(family);
             this.familiesDB.set(index, family);
+            try{
+                List<Family> data = this.getData();
+                data.set(index,family);
+                this.saveData(data);
+            } catch (IllegalArgumentException | IOException | ClassNotFoundException e){
+                e.getMessage();
+            }
+
         } else {
             this.familiesDB.add(family);
+            try{
+                List<Family> data = this.getData();
+                data.add(family);
+                this.saveData(data);
+            } catch (IllegalArgumentException | IOException | ClassNotFoundException e){
+                e.getMessage();
+            }
         }
 
         return family;

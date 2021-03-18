@@ -80,7 +80,7 @@ public class FamilyService {
                 .filter(f -> f.countFamily(f) == number).count();
     }
 
-    public Family deleteFamilyByIndex(int index) {
+    public boolean deleteFamilyByIndex(int index) {
         return FamilyDao.deleteFamily(index);
     }
 
