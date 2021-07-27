@@ -79,6 +79,7 @@ public class CollectionFamilyDao implements FamilyDao, Serializable {
         oos.writeObject(data);
         oos.close();
     }
+
     public List<Family> getData() throws IOException, ClassNotFoundException {
         File file = new File("DB.bin");
         FileInputStream fos = new FileInputStream(file);
