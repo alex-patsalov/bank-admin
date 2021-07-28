@@ -3,11 +3,13 @@ package app1.services;
 import app1.dto.Account;
 import app1.dto.AccountDAO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class AccountService {
 
   private final AccountDAO accountDAO;
@@ -34,8 +36,8 @@ public class AccountService {
     return accountDAO.delete(account);
   }
 
-  public boolean deleteById(long id){
-    return accountDAO.deleteById(id);
+  public void deleteById(long id){
+    accountDAO.deleteById(id);
   }
 
   public boolean deleteAll(List<Account> entities){

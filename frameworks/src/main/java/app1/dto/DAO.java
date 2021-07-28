@@ -15,7 +15,7 @@ public interface DAO<T> {
 
   boolean delete(T obj);
 
-  boolean deleteById(long id);
+  void deleteById(long id);
 
   boolean deleteAll(List<T> entities);
 

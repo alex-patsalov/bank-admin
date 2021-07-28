@@ -1,9 +1,15 @@
 package app1.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor
+@Component
 public class AccountDAO implements DAO<Account>{
   private final List<Account> accounts = new ArrayList<>();
   private Long id = 0L;
@@ -27,7 +33,7 @@ public class AccountDAO implements DAO<Account>{
 
   @Override
   public Optional<Account> getById(long id) {
-    return Optional.ofNullable(accounts.get((int) id));
+    return accounts.stream().filter(a -> a.getId() == id).findAny();
   }
 
   @Override
@@ -45,8 +51,9 @@ public class AccountDAO implements DAO<Account>{
   }
 
   @Override
-  public boolean deleteById(long id) {
-    return accounts.remove(id);
+  public void deleteById(long id) {
+    Optional<Account> a = getById(id);
+    a.ifPresent(aa -> delete(aa));
   }
 
   @Override

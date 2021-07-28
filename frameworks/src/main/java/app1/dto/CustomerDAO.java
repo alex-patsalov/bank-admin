@@ -1,9 +1,15 @@
 package app1.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@NoArgsConstructor
+@Component
 public class CustomerDAO implements DAO<Customer>{
 
   private final List<Customer> customers = new ArrayList<>();
@@ -27,7 +33,7 @@ public class CustomerDAO implements DAO<Customer>{
 
   @Override
   public Optional<Customer> getById(long id) {
-    return Optional.ofNullable(customers.get((int) id));
+    return customers.stream().filter(c -> c.getId() == id).findAny();
   }
 
   @Override
@@ -41,8 +47,9 @@ public class CustomerDAO implements DAO<Customer>{
   }
 
   @Override
-  public boolean deleteById(long id) {
-    return customers.remove(id);
+  public void deleteById(long id) {
+    Optional<Customer> c = getById(id);
+    c.ifPresent(cc -> delete(cc));
   }
 
   @Override

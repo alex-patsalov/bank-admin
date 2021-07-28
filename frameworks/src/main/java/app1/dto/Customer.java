@@ -1,8 +1,10 @@
 package app1.dto;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Data
 public class Customer {
 
   private Long id;
@@ -58,4 +60,14 @@ public class Customer {
     return accounts;
   }
 
+  @Override
+  public String toString() {
+    return "[Customer:" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", age=" + age +
+            ", accounts=" + accounts +
+            ']';
+  }
 }

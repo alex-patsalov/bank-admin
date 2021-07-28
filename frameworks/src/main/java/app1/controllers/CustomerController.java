@@ -1,7 +1,9 @@
 package app1.controllers;
 
 import app1.dto.Account;
+import app1.dto.Currency;
 import app1.dto.Customer;
+import app1.services.AccountService;
 import app1.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class CustomerController {
 
   private final CustomerService customerService;
+  private final AccountService accountService;
 
   @GetMapping({"customer"})
   public Optional<Customer> getOne(@RequestParam("id") long id) {
@@ -40,13 +43,19 @@ public class CustomerController {
       name.ifPresent(n -> customer.get().setName(n));
       email.ifPresent(e -> customer.get().setEmail(e));
       age.ifPresent(a -> customer.get().setAge(a));
-      customerService.save(customer.get());
     }
   }
 
   @DeleteMapping({"customer/delete"})
   public void deleteCustomer(@RequestParam("id") long id){
     customerService.deleteById(id);
+  }
+
+  @PostMapping({"customer/account/create"})
+  public void createAccount(@RequestBody Account a, @RequestParam("id") long id){
+    Optional<Customer> c = customerService.getById(id);
+    c.ifPresent(cc -> cc.getAccounts().add(a));
+    accountService.save(a);
   }
 
 //  Создать счет для конкретного пользователя

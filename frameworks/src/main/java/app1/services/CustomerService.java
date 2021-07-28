@@ -3,11 +3,13 @@ package app1.services;
 import app1.dto.Customer;
 import app1.dto.CustomerDAO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
+@Service
 public class CustomerService {
 
   private final CustomerDAO customerDAO;
@@ -28,8 +30,8 @@ public class CustomerService {
     return customerDAO.getAll();
   }
 
-  public boolean deleteById(long id){
-    return customerDAO.deleteById(id);
+  public void deleteById(long id){
+    customerDAO.deleteById(id);
   }
 
   public boolean delete(Customer c){

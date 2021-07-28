@@ -1,7 +1,9 @@
 package app1.dto;
 
-import java.util.UUID;
+import lombok.Data;
 
+import java.util.UUID;
+@Data
 public class Account {
 
   private Long id;
@@ -55,5 +57,16 @@ public class Account {
 
   public Customer getCustomer() {
     return customer;
+  }
+
+  @Override
+  public String toString() {
+    return "[Account:" +
+            "id=" + id +
+            ", number='" + number + '\'' +
+            ", currency=" + currency +
+            ", balance=" + balance +
+            ", customer=" + customer +
+            ']';
   }
 }
