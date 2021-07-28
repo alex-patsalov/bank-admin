@@ -1,6 +1,7 @@
 package app1.dto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DAO<T> {
 
@@ -8,7 +9,7 @@ public interface DAO<T> {
 
   void saveAll(List<T> entities);
 
-  T getOne(long id);
+  Optional<T> getById(long id);
 
   List<T> getAll();
 

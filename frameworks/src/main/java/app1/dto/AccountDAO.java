@@ -2,6 +2,7 @@ package app1.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class AccountDAO implements DAO<Account>{
   private final List<Account> accounts = new ArrayList<>();
@@ -25,13 +26,17 @@ public class AccountDAO implements DAO<Account>{
   }
 
   @Override
-  public Account getOne(long id) {
-    return accounts.get((int) id);
+  public Optional<Account> getById(long id) {
+    return Optional.ofNullable(accounts.get((int) id));
   }
 
   @Override
   public List<Account> getAll() {
     return accounts;
+  }
+
+  public Optional<Account> getByNumber(String number){
+    return getAll().stream().filter(a -> a.getNumber().equals(number)).findAny();
   }
 
   @Override

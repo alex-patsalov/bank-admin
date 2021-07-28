@@ -2,6 +2,7 @@ package app1.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class CustomerDAO implements DAO<Customer>{
 
@@ -25,8 +26,8 @@ public class CustomerDAO implements DAO<Customer>{
   }
 
   @Override
-  public Customer getOne(long id) {
-    return customers.get((int) id);
+  public Optional<Customer> getById(long id) {
+    return Optional.ofNullable(customers.get((int) id));
   }
 
   @Override
