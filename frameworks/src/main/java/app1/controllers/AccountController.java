@@ -4,13 +4,15 @@ import app1.dto.Account;
 import app1.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@RestController("/account")
+@RestController
+@RequestMapping("accounts")
 public class AccountController {
 
   private final AccountService accountService;

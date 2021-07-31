@@ -10,54 +10,74 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("customers")
 public class CustomerController {
 
   private final CustomerService customerService;
   private final AccountService accountService;
 
-  @GetMapping({"customer"})
+  @GetMapping()
   public Optional<Customer> getOne(@RequestParam("id") long id) {
     return customerService.getById(id);
   }
 
-  @GetMapping({"customer/all"})
+  @GetMapping({"all"})
   public List<Customer> getAll() {
     return customerService.getAll();
   }
 
-  @PostMapping({"customer/create"})
+  @PostMapping({"create"})
   public Customer createOne(@RequestBody Customer c) {
     return customerService.save(c);
   }
 
-  @PutMapping({"customer/modify"})
-  public void modify(@RequestParam("id") long id,
-                     @RequestParam("name") Optional<String> name,
-                     @RequestParam("email") Optional<String> email,
-                     @RequestParam("age") Optional<Integer> age){
-    Optional<Customer> customer = customerService.getById(id);
-    if (customer.isPresent()){
-      name.ifPresent(n -> customer.get().setName(n));
-      email.ifPresent(e -> customer.get().setEmail(e));
-      age.ifPresent(a -> customer.get().setAge(a));
-    }
+  @PutMapping({"modify/{id}"})
+  public Customer modify(@PathVariable("id") long id, @RequestBody Customer c) {
+    return customerService.getById(id)
+            .map(customer -> {
+              customer.setName(c.getName());
+              customer.setEmail(c.getEmail());
+              customer.setAge(c.getAge());
+              return customer;
+            })
+            .orElseGet(() -> {
+              c.setId(id);
+              return customerService.save(c);
+            });
   }
 
-  @DeleteMapping({"customer/delete"})
-  public void deleteCustomer(@RequestParam("id") long id){
+  @DeleteMapping({"delete/{id}"})
+  public void deleteCustomer(@PathVariable("id") long id) {
     customerService.deleteById(id);
   }
 
-  @PostMapping({"customer/account/create"})
-  public void createAccount(@RequestBody Account a, @RequestParam("id") long id){
+  @PostMapping({"accounts/create/{id}"})
+  public void createAccount(@PathVariable long id, @RequestParam("currency") String currency) {
     Optional<Customer> c = customerService.getById(id);
-    c.ifPresent(cc -> cc.getAccounts().add(a));
-    accountService.save(a);
+    if (c.isPresent()) {
+      Customer customer = c.get();
+      Account account = new Account(Currency.valueOf(currency), customer);
+      customer.getAccounts().add(account);
+      accountService.save(account);
+      System.out.println("created");
+    }
   }
 
-//  Создать счет для конкретного пользователя
-//  Удалить счет у пользователя
+  @DeleteMapping({"accounts/delete/{id}"})
+  public void deleteAccount(@PathVariable long id, @RequestParam("currency") String currency) {
+    Optional<Customer> c = customerService.getById(id);
+    if (c.isPresent()) {
+      Customer customer = c.get();
+      List<Account> customerAccounts = customer.getAccounts();
+      List<Account> modifiedAccounts = customerAccounts.stream()
+                      .filter(a -> !a.getCurrency().toString().equals(currency))
+                      .collect(Collectors.toList());
+      customer.setAccounts(modifiedAccounts);
+      System.out.println("deleted");
+    }
+  }
 }

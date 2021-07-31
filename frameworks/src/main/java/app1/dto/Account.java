@@ -1,5 +1,6 @@
 package app1.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.UUID;
@@ -10,6 +11,7 @@ public class Account {
   private String number;
   private Currency currency;
   private Double balance;
+  @JsonIgnore
   private Customer customer;
 
   public Account(Currency currency, Customer customer) {

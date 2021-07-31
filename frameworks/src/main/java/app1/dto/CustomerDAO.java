@@ -3,6 +3,7 @@ package app1.dto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,10 @@ public class CustomerDAO implements DAO<Customer>{
   @Override
   public Optional<Customer> getById(long id) {
     return customers.stream().filter(c -> c.getId() == id).findAny();
+  }
+
+  public Optional<Customer> getByName(String name){
+    return customers.stream().filter(c -> c.getName().equals(name)).findFirst();
   }
 
   @Override

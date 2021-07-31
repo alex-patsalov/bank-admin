@@ -26,6 +26,10 @@ public class CustomerService {
     return customerDAO.getById(id);
   }
 
+  public Optional<Customer> getByName(String name){
+    return customerDAO.getByName(name);
+  }
+
   public List<Customer> getAll(){
     return customerDAO.getAll();
   }

@@ -1,8 +1,10 @@
 package app1.dto;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
-
+@Repository
 public interface DAO<T> {
 
   T save(T obj);
