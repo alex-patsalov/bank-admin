@@ -13,7 +13,10 @@ import java.util.Optional;
 @Component
 public class CustomerDAO implements DAO<Customer>{
 
-  private final List<Customer> customers = new ArrayList<>();
+  private final List<Customer> customers = new ArrayList<>(){{
+    add(new Customer(100L, "test customer 1", "test1@gmail.com", 35));
+    add(new Customer(101L, "test customer 2", "test2@gmail.com", 25));
+  }};
   private Long id = 0L;
   @Override
   public Customer save(Customer customer) {

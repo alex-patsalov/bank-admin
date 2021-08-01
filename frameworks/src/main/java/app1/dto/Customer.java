@@ -19,6 +19,13 @@ public class Customer {
     this.age = age;
     this.accounts = new ArrayList<Account>();
   }
+  public Customer(Long id, String name, String email, Integer age) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.age = age;
+    this.accounts = new ArrayList<Account>();
+  }
 
   public void setId(Long id) {
     this.id = id;

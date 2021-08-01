@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin /*here*/
 @RequestMapping("customers")
 public class CustomerController {
 
