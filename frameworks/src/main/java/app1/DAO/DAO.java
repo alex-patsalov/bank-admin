@@ -11,9 +11,9 @@ public interface DAO<T> {
 
   void saveAll(List<T> entities);
 
-  Optional<T> getById(long id);
+  Optional<T> findById(long id);
 
-  List<T> getAll();
+  List<T> findAll();
 
   boolean delete(T obj);
 

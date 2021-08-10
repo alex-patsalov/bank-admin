@@ -31,12 +31,12 @@ public class EmployerDAO implements DAO<Employer>{
   }
 
   @Override
-  public Optional<Employer> getById(long id) {
+  public Optional<Employer> findById(long id) {
     return employers.stream().filter(e -> e.getId() == id).findAny();
   }
 
   @Override
-  public List<Employer> getAll() {
+  public List<Employer> findAll() {
     return employers;
   }
 
@@ -47,7 +47,7 @@ public class EmployerDAO implements DAO<Employer>{
 
   @Override
   public void deleteById(long id) {
-    Optional<Employer> e = getById(id);
+    Optional<Employer> e = findById(id);
     e.ifPresent(ee -> delete(ee));
   }
 

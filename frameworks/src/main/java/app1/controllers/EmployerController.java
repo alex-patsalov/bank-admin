@@ -16,7 +16,7 @@ public class EmployerController {
   private final EmployerService employerService;
 
   @GetMapping()
-  public Optional<Employer> getOne(@RequestParam("id") long id){
+  public Optional<Employer> getOne(@RequestParam("id") Integer id){
     return employerService.getById(id);
   }
 
@@ -31,7 +31,7 @@ public class EmployerController {
   }
 
   @PutMapping({"modify/{id}"})
-  public Employer modify(@PathVariable("id") long id, @RequestBody Employer e) {
+  public Employer modify(@PathVariable("id") Integer id, @RequestBody Employer e) {
     return employerService.getById(id)
             .map(employer -> {
               employer.setName(e.getName());
@@ -45,7 +45,7 @@ public class EmployerController {
   }
 
   @DeleteMapping({"delete/{id}"})
-  public void deleteEmployer(@PathVariable("id") long id){
+  public void deleteEmployer(@PathVariable("id") Integer id){
     employerService.deleteById(id);
   }
 }

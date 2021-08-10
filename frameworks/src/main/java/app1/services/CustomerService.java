@@ -2,6 +2,7 @@ package app1.services;
 
 import app1.entities.Customer;
 import app1.DAO.CustomerDAO;
+import app1.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
-  private final CustomerDAO customerDAO;
+//  private final CustomerDAO customerDAO;
+  private final CustomerRepository customerDAO;
 
   public Customer save(Customer customer){
     return customerDAO.save(customer);
@@ -22,28 +24,28 @@ public class CustomerService {
     customerDAO.saveAll(entities);
   }
 
-  public Optional<Customer> getById(long id){
-    return customerDAO.getById(id);
+  public Optional<Customer> getById(Integer id){
+    return customerDAO.findById(id);
   }
 
   public Optional<Customer> getByName(String name){
-    return customerDAO.getByName(name);
+    return getAll().stream().filter(c -> c.getName().equals(name)).findFirst();
   }
 
   public List<Customer> getAll(){
-    return customerDAO.getAll();
+    return customerDAO.findAll();
   }
 
-  public void deleteById(long id){
+  public void deleteById(Integer id){
     customerDAO.deleteById(id);
   }
 
-  public boolean delete(Customer c){
-    return customerDAO.delete(c);
+  public void delete(Customer c){
+     customerDAO.delete(c);
   }
 
-  public boolean deleteAll(List<Customer> entities){
-    return customerDAO.deleteAll(entities);
+  public void deleteAll(Iterable<Customer> entities){
+     customerDAO.deleteAll(entities);
   }
 
 }

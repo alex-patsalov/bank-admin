@@ -2,6 +2,7 @@ package app1.services;
 
 import app1.entities.Employer;
 import app1.DAO.EmployerDAO;
+import app1.repositories.EmployerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class EmployerService {
 
-  private final EmployerDAO employerDAO;
+//  private final EmployerDAO employerDAO;
+  private final EmployerRepository employerDAO;
 
   public Employer save(Employer e){
     return employerDAO.save(e);
@@ -22,24 +24,24 @@ public class EmployerService {
     employerDAO.saveAll(entities);
   }
 
-  public Optional<Employer> getById(long id){
-    return employerDAO.getById(id);
+  public Optional<Employer> getById(Integer id){
+    return employerDAO.findById(id);
   }
 
   public List<Employer> getAll(){
-    return employerDAO.getAll();
+    return employerDAO.findAll();
   }
 
-  public boolean delete(Employer e){
-    return employerDAO.delete(e);
+  public void delete(Employer e){
+     employerDAO.delete(e);
   }
 
-  public void deleteById(long id){
+  public void deleteById(Integer id){
     employerDAO.deleteById(id);
   }
 
-  public boolean deleteAll(List<Employer> es){
-    return employerDAO.deleteAll(es);
+  public void deleteAll(List<Employer> es){
+     employerDAO.deleteAll(es);
   }
 
 }

@@ -18,17 +18,19 @@ public class Account {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "account_id")
-  private Long id;
+  private Integer id;
 
   @Column(name = "number")
   private String number;
 
   @Column(name = "currency")
+  @Enumerated(EnumType.STRING)
   private Currency currency;
 
   @Column(name = "balance")
   private Double balance;
 
+  @JsonIgnore
   @ManyToOne
   private Customer customer;
 

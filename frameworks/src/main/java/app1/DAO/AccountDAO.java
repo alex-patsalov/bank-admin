@@ -31,17 +31,17 @@ public class AccountDAO implements DAO<Account>{
   }
 
   @Override
-  public Optional<Account> getById(long id) {
+  public Optional<Account> findById(long id) {
     return accounts.stream().filter(a -> a.getId() == id).findAny();
   }
 
   @Override
-  public List<Account> getAll() {
+  public List<Account> findAll() {
     return accounts;
   }
 
   public Optional<Account> getByNumber(String number){
-    return getAll().stream().filter(a -> a.getNumber().equals(number)).findAny();
+    return findAll().stream().filter(a -> a.getNumber().equals(number)).findAny();
   }
 
   @Override
@@ -51,7 +51,7 @@ public class AccountDAO implements DAO<Account>{
 
   @Override
   public void deleteById(long id) {
-    Optional<Account> a = getById(id);
+    Optional<Account> a = findById(id);
     a.ifPresent(aa -> delete(aa));
   }
 

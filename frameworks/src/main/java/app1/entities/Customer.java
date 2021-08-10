@@ -18,7 +18,7 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "customer_id")
-  private Long id;
+  private Integer id;
 
   @Column(name = "name")
   private String name;
@@ -54,7 +54,7 @@ public class Customer {
     this.accounts = new ArrayList<Account>();
   }
 
-  public Customer(Long id, String name, String email, Integer age) {
+  public Customer(Integer id, String name, String email, Integer age) {
     this.id = id;
     this.name = name;
     this.email = email;

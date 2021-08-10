@@ -7,6 +7,7 @@ import app1.services.AccountService;
 import app1.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -21,7 +22,7 @@ public class CustomerController {
   private final AccountService accountService;
 
   @GetMapping()
-  public Optional<Customer> getOne(@RequestParam("id") long id) {
+  public Optional<Customer> getOne(@RequestParam("id") Integer id) {
     return customerService.getById(id);
   }
 
@@ -35,14 +36,14 @@ public class CustomerController {
     return customerService.save(c);
   }
 
-  @PutMapping({"modify/{id}"})
-  public Customer modify(@PathVariable("id") long id, @RequestBody Customer c) {
+  @PutMapping({"modify"})
+  public Customer modify(@RequestParam("id") Integer id, @RequestBody Customer c) {
     return customerService.getById(id)
             .map(customer -> {
               customer.setName(c.getName());
               customer.setEmail(c.getEmail());
               customer.setAge(c.getAge());
-              return customer;
+              return customerService.save(customer);
             })
             .orElseGet(() -> {
               c.setId(id);
@@ -50,13 +51,13 @@ public class CustomerController {
             });
   }
 
-  @DeleteMapping({"delete/{id}"})
-  public void deleteCustomer(@PathVariable("id") long id) {
+  @DeleteMapping({"delete"})
+  public void deleteCustomer(@RequestParam("id") Integer id) {
     customerService.deleteById(id);
   }
 
-  @PostMapping({"accounts/create/{id}"})
-  public void createAccount(@PathVariable long id, @RequestParam("currency") String currency) {
+  @PostMapping({"accounts/create"})
+  public void createAccount(@RequestParam("id") Integer id, @RequestParam("currency") String currency) {
     Optional<Customer> c = customerService.getById(id);
     if (c.isPresent()) {
       Customer customer = c.get();
@@ -67,17 +68,23 @@ public class CustomerController {
     }
   }
 
-  @DeleteMapping({"accounts/delete/{id}"})
-  public void deleteAccount(@PathVariable long id, @RequestParam("currency") String currency) {
+  @DeleteMapping({"accounts/delete"})
+  public void deleteAccount(@RequestParam("id") Integer id, @RequestParam("currency") String currency) {
     Optional<Customer> c = customerService.getById(id);
     if (c.isPresent()) {
       Customer customer = c.get();
       List<Account> customerAccounts = customer.getAccounts();
-      List<Account> modifiedAccounts = customerAccounts.stream()
-                      .filter(a -> !a.getCurrency().toString().equals(currency))
-                      .collect(Collectors.toList());
+      Optional<Account> account = customerAccounts
+              .stream()
+              .filter(a -> a.getCurrency().toString().equals(currency))
+              .findAny();
+      List<Account> modifiedAccounts = customerAccounts
+              .stream()
+              .filter(a -> !a.getCurrency().toString().equals(currency))
+              .collect(Collectors.toList());
       customer.setAccounts(modifiedAccounts);
-      System.out.println("deleted");
+      customerService.save(customer);
+      account.ifPresent(a -> accountService.delete(a));
     }
   }
 }

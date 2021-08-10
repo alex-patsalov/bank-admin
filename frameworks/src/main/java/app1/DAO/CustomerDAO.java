@@ -13,8 +13,8 @@ import java.util.Optional;
 public class CustomerDAO implements DAO<Customer>{
 
   private final List<Customer> customers = new ArrayList<>(){{
-    add(new Customer(100L, "test customer 1", "test1@gmail.com", 35));
-    add(new Customer(101L, "test customer 2", "test2@gmail.com", 25));
+    add(new Customer(100, "test customer 1", "test1@gmail.com", 35));
+    add(new Customer(101, "test customer 2", "test2@gmail.com", 25));
   }};
 //  private Long id = 0L;
   @Override
@@ -35,7 +35,7 @@ public class CustomerDAO implements DAO<Customer>{
   }
 
   @Override
-  public Optional<Customer> getById(long id) {
+  public Optional<Customer> findById(long id) {
     return customers.stream().filter(c -> c.getId() == id).findAny();
   }
 
@@ -44,7 +44,7 @@ public class CustomerDAO implements DAO<Customer>{
   }
 
   @Override
-  public List<Customer> getAll() {
+  public List<Customer> findAll() {
     return customers;
   }
 
@@ -55,7 +55,7 @@ public class CustomerDAO implements DAO<Customer>{
 
   @Override
   public void deleteById(long id) {
-    Optional<Customer> c = getById(id);
+    Optional<Customer> c = findById(id);
     c.ifPresent(cc -> delete(cc));
   }
 

@@ -8,5 +8,5 @@ spring:
       password: "pg123456"
     jpa:
       show-sql: true
-      hibernate:
-        ddl-auto: create
+#      hibernate:
+#        ddl-auto: create

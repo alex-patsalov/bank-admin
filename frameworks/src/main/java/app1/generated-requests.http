@@ -1,0 +1,78 @@
+#CUSTOMER API
+###
+GET http://localhost:9000/customer/all
+###
+GET http://localhost:9000/customer?id=1
+###
+POST http://localhost:9000/customer/create
+Content-Type: application/json
+
+{
+  "name": "customer2",
+  "email": "customer2 email",
+  "age": 202
+}
+###
+POST http://localhost:9000/customer/create
+Content-Type: application/json
+
+{
+  "name": "rich",
+  "email": "rich email",
+  "age": 57
+}
+###
+POST http://localhost:9000/customer/accounts/create?id=1&currency=USD
+###
+POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
+###
+PUT http://localhost:9000/customer/modify?id=1
+Content-Type: application/json
+
+{
+  "name": "customer1 modified",
+  "email": "customer1 email modified",
+  "age": 1
+}
+###
+DELETE http://localhost:9000/customer/accounts/delete?id=2&currency=USD
+###
+DELETE http://localhost:9000/customer/delete?id=2
+#-----------------------------------------------------------------------------------------------------
+###ACCOUNT API
+###
+PUT http://localhost:9000/account/put?accountNumber=3f6dcf11-379d-48de-97d2-d00bba1dacaa&sum=1000
+###
+PUT http://localhost:9000/account/withdraw?accountNumber=3f6dcf11-379d-48de-97d2-d00bba1dacaa&sum=17
+###
+PUT http://localhost:9000/account/transfer?from=e0b75a85-10fd-4137-a7ba-a845c7a78404&to=9123259d-30d6-4f96-9c78-ae90e492969e&sum=34
+#-----------------------------------------------------------------------------------------------------
+###EMPLOYER API
+###
+###
+###
+GET http://localhost:9000/employer?id=1
+
+###
+POST http://localhost:9000/customer/accounts/create/1&currency=USD
+
+###
+POST http://localhost:9000/employer/create
+Content-Type: application/json
+
+{
+  "name": "employer1",
+  "address": "employer1 addresss"
+}
+
+###
+PUT http://localhost:9000/employer/modify/2
+Content-Type: application/json
+
+{
+  "name": "employer modified 2",
+  "address": "employer1 addresss modified 2"
+}
+
+###
+DELETE http://localhost:9000/employer/delete/1
