@@ -1,7 +1,8 @@
 package app1.services;
 
-import app1.dto.Account;
-import app1.dto.AccountDAO;
+import app1.entities.Account;
+import app1.DAO.AccountDAO;
+import app1.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 public class AccountService {
 
   private final AccountDAO accountDAO;
+//  private final AccountRepository accountDAO;
 
   public Account save (Account account){
     return accountDAO.save(account);

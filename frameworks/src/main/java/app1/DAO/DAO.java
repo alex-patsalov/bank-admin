@@ -1,4 +1,4 @@
-package app1.dto;
+package app1.DAO;
 
 import org.springframework.stereotype.Repository;
 

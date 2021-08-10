@@ -1,5 +1,6 @@
-package app1.dto;
+package app1.DAO;
 
+import app1.entities.Account;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
@@ -10,12 +11,12 @@ import java.util.Optional;
 @Component
 public class AccountDAO implements DAO<Account>{
   private final List<Account> accounts = new ArrayList<>();
-  private Long id = 0L;
+//  private Long id = 0L;
 
   @Override
   public Account save(Account account) {
     account.setId(null);
-    account.setId(++id);
+//    account.setId(++id);
     accounts.add(account);
     return account;
   }
@@ -24,7 +25,7 @@ public class AccountDAO implements DAO<Account>{
   public void saveAll(List<Account> entities) {
     for (Account a : entities){
       a.setId(null);
-      a.setId(++id);
+//      a.setId(++id);
     }
     accounts.addAll(entities);
   }

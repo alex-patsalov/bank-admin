@@ -1,18 +1,22 @@
-package app1.dto;
+package app1.DAO;
+
+import app1.entities.Employer;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class EmployerDAO implements DAO<Employer>{
 
   private final List<Employer> employers = new ArrayList<>();
-  private Long id = 0L;
+//  private Long id = 0L;
 
   @Override
   public Employer save(Employer obj) {
     obj.setId(null);
-    obj.setId(++id);
+//    obj.setId(++id);
     employers.add(obj);
     return obj;
   }
@@ -21,7 +25,7 @@ public class EmployerDAO implements DAO<Employer>{
   public void saveAll(List<Employer> entities) {
     for (Employer e : entities){
       e.setId(null);
-      e.setId(++id);
+//      e.setId(++id);
       employers.addAll(entities);
     }
   }

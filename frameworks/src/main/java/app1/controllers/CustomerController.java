@@ -1,13 +1,12 @@
 package app1.controllers;
 
-import app1.dto.Account;
-import app1.dto.Currency;
-import app1.dto.Customer;
+import app1.entities.Account;
+import app1.enums.Currency;
+import app1.entities.Customer;
 import app1.services.AccountService;
 import app1.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RestController
 @CrossOrigin /*here*/
-@RequestMapping("customers")
+@RequestMapping("customer")
 public class CustomerController {
 
   private final CustomerService customerService;

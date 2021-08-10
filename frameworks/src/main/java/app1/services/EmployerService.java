@@ -1,7 +1,7 @@
 package app1.services;
 
-import app1.dto.Employer;
-import app1.dto.EmployerDAO;
+import app1.entities.Employer;
+import app1.DAO.EmployerDAO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

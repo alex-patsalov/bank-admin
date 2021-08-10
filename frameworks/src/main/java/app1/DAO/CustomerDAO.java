@@ -1,9 +1,8 @@
-package app1.dto;
+package app1.DAO;
 
-import lombok.AllArgsConstructor;
+import app1.entities.Customer;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +16,11 @@ public class CustomerDAO implements DAO<Customer>{
     add(new Customer(100L, "test customer 1", "test1@gmail.com", 35));
     add(new Customer(101L, "test customer 2", "test2@gmail.com", 25));
   }};
-  private Long id = 0L;
+//  private Long id = 0L;
   @Override
   public Customer save(Customer customer) {
     customer.setId(null);
-    customer.setId(++id);
+//    customer.setId(++id);
     customers.add(customer);
     return customer;
   }
@@ -30,7 +29,7 @@ public class CustomerDAO implements DAO<Customer>{
   public void saveAll(List<Customer> entities) {
     for (Customer c : entities){
       c.setId(null);
-      c.setId(++id);
+//      c.setId(++id);
     }
     customers.addAll(entities);
   }

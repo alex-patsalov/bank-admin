@@ -1,6 +1,4 @@
-package app1.dto;
-
-import java.io.Serializable;
+package app1.enums;
 
 public enum Currency {
   USD,

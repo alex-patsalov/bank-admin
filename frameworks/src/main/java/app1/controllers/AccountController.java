@@ -1,6 +1,6 @@
 package app1.controllers;
 
-import app1.dto.Account;
+import app1.entities.Account;
 import app1.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("accounts")
+@RequestMapping("account")
 public class AccountController {
 
   private final AccountService accountService;
