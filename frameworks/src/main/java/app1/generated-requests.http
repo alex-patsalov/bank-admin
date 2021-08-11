@@ -2,7 +2,7 @@
 ###
 GET http://localhost:9000/customer/all
 ###
-GET http://localhost:9000/customer?id=1
+GET http://localhost:9000/customer?id=2
 ###
 POST http://localhost:9000/customer/create
 Content-Type: application/json
@@ -54,7 +54,7 @@ PUT http://localhost:9000/account/transfer?from=e0b75a85-10fd-4137-a7ba-a845c7a7
 GET http://localhost:9000/employer?id=1
 
 ###
-POST http://localhost:9000/customer/accounts/create/1&currency=USD
+GET http://localhost:9000/employer/all
 
 ###
 POST http://localhost:9000/employer/create
@@ -66,7 +66,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:9000/employer/modify/2
+PUT http://localhost:9000/employer/modify/1
 Content-Type: application/json
 
 {
