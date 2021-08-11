@@ -17,8 +17,6 @@ spring:
   jpa:
     database-platform: "org.hibernate.dialect.H2Dialect"
     show-sql: true
-#    hibernate:
-#      ddl-auto: create
 ---
 spring:
   profiles: prod
@@ -28,11 +26,9 @@ spring:
     password: "ERlRGaRPzEhOD4l43_SG206GE9_genJn"
   jpa:
     show-sql: true
-#    hibernate:
-#      ddl-auto: create
 ---
 spring:
-  profiles: test-prod
+  profiles: prod-test
   datasource:
     url: "jdbc:postgresql://localhost:5432/postgres"
     username: "postgres"
