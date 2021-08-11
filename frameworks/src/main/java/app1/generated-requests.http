@@ -22,7 +22,7 @@ Content-Type: application/json
   "age": 57
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=1&currency=USD
+POST http://localhost:9000/customer/accounts/create?id=1&currency=EUR
 ###
 POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
 ###
@@ -43,9 +43,9 @@ DELETE http://localhost:9000/customer/delete?id=2
 ###
 PUT http://localhost:9000/account/put?accountNumber=3f6dcf11-379d-48de-97d2-d00bba1dacaa&sum=1000
 ###
-PUT http://localhost:9000/account/withdraw?accountNumber=3f6dcf11-379d-48de-97d2-d00bba1dacaa&sum=17
+PUT http://localhost:9000/account/withdraw?accountNumber=USD111&sum=117
 ###
-PUT http://localhost:9000/account/transfer?from=e0b75a85-10fd-4137-a7ba-a845c7a78404&to=9123259d-30d6-4f96-9c78-ae90e492969e&sum=34
+PUT http://localhost:9000/account/transfer?from=USD111&to=USD411&sum=234
 #-----------------------------------------------------------------------------------------------------
 ###EMPLOYER API
 ###
