@@ -36,11 +36,6 @@ public class Customer {
                   inverseJoinColumns = { @JoinColumn(name = "acc_id", referencedColumnName = "account_id") })
   private List<Account> accounts;
 
-//  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//  @JoinTable
-//          (name = "r_customer_employer",
-//                  joinColumns = { @JoinColumn(name = "person_id", referencedColumnName = "per_id") },
-//                  inverseJoinColumns = { @JoinColumn(name = "employer_id", referencedColumnName = "emp_id") })
   @ManyToMany
   @JoinTable(name = "customers_employers",
           joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "customer_id") },

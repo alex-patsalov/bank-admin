@@ -37,7 +37,7 @@ Content-Type: application/json
 ###
 DELETE http://localhost:9000/customer/accounts/delete?id=2&currency=USD
 ###
-DELETE http://localhost:9000/customer/delete?id=2
+DELETE http://localhost:9000/customer/delete?id=19
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API
 ###
