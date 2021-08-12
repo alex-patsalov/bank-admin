@@ -9,7 +9,6 @@ const CustomersTable = function (){
     useEffect(()=>{
         async function fetch(){
             const data = await Ajax.get("/customer/all");
-            console.log(data);
             setCustomers(data);
         }
         fetch();
