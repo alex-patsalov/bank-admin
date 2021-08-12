@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const env = "http://localhost:9000/";
+const env = "http://localhost:9000";
 
 class Ajax {
 
