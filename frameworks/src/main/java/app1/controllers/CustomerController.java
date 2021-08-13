@@ -61,7 +61,7 @@ public class CustomerController {
     Optional<Customer> c = customerService.getById(id);
     if (c.isPresent()) {
       Customer customer = c.get();
-      Account account = new Account(Currency.valueOf(currency), customer);
+      Account account = new Account(Currency.valueOf(currency.toUpperCase()), customer);
       customer.getAccounts().add(account);
       accountService.save(account);
       System.out.println("created");
@@ -77,10 +77,10 @@ public class CustomerController {
       Optional<Account> account = customerAccounts
               .stream()
               .filter(a -> a.getCurrency().toString().equals(currency))
-              .findAny();
+              .findFirst();
       List<Account> modifiedAccounts = customerAccounts
               .stream()
-              .filter(a -> !a.getCurrency().toString().equals(currency))
+              .filter(a -> !a.getId().equals(account.get().getId()))
               .collect(Collectors.toList());
       customer.setAccounts(modifiedAccounts);
       customerService.save(customer);

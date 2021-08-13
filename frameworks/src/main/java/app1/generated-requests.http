@@ -10,7 +10,7 @@ Content-Type: application/json
 {
   "name": "customer2",
   "email": "customer2 email",
-  "age": 202
+  "age": 22
 }
 ###
 POST http://localhost:9000/customer/create
@@ -22,9 +22,9 @@ Content-Type: application/json
   "age": 57
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=1&currency=EUR
-###
 POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
+###
+POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
 ###
 PUT http://localhost:9000/customer/modify?id=1
 Content-Type: application/json
@@ -35,17 +35,18 @@ Content-Type: application/json
   "age": 1
 }
 ###
-DELETE http://localhost:9000/customer/accounts/delete?id=2&currency=USD
+DELETE http://localhost:9000/customer/accounts/delete?id=1&currency=USD
 ###
-DELETE http://localhost:9000/customer/delete?id=19
+DELETE http://localhost:9000/customer/delete?id=6
+
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API
 ###
-PUT http://localhost:9000/account/put?accountNumber=3f6dcf11-379d-48de-97d2-d00bba1dacaa&sum=1000
+PUT http://localhost:9000/account/put?accountNumber=8187351f-9579-416b-b879-a729282f3ced&sum=1000
 ###
 PUT http://localhost:9000/account/withdraw?accountNumber=USD111&sum=117
 ###
-PUT http://localhost:9000/account/transfer?from=USD111&to=USD411&sum=234
+PUT http://localhost:9000/account/transfer?from=8187351f-9579-416b-b879-a729282f3ced&to=6cf66400-ddba-4390-b68d-04aff854e316&sum=234
 #-----------------------------------------------------------------------------------------------------
 ###EMPLOYER API
 ###

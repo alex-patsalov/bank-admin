@@ -21,11 +21,13 @@ spring:
 spring:
   profiles: prod
   datasource:
-    url: "jdbc:postgresql://hattie.db.elephantsql.com:5432/pyxsfemm"
-    username: "pyxsfemm"
-    password: "ERlRGaRPzEhOD4l43_SG206GE9_genJn"
+    url: "jdbc:postgresql://hattie.db.elephantsql.com:5432/ogqaofff"
+    username: "ogqaofff"
+    password: "tDT97WOXqjeHNrXjlq5USLwVd9giDV2i"
   jpa:
     show-sql: true
+#    hibernate:
+#      ddl-auto: create
 ---
 spring:
   profiles: prod-test

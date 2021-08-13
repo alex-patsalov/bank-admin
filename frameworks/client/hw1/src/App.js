@@ -1,5 +1,6 @@
 import CustomersTable from "./components/CustomersTable";
 import FormToCreate from "./components/FormToCreate"
+import CreateAccount from "./components/CreateAccount";
 
 const App = function () {
     return (
@@ -7,6 +8,7 @@ const App = function () {
             <h1>These are all available customers</h1>
             <CustomersTable/>
             <FormToCreate/>
+            <CreateAccount/>
         </div>
     );
 }
