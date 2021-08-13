@@ -19,9 +19,9 @@ create table account
     balance              double,
     currency             varchar(255),
     number               varchar(255),
-    customer_customer_id int,
+    customer_id int,
     primary key (account_id),
-    foreign key (customer_customer_id) references customer (customer_id)
+    foreign key (customer_id) references customer (customer_id)
 );
 
 create table employer
@@ -40,15 +40,6 @@ create table customers_employers
     foreign key (emp_id) references employer (employer_id)
 );
 
-create table r_customer_account
-(
-    cus_id int not null,
-    acc_id int not null,
-    constraint account_id_unique unique (acc_id),
-    foreign key (acc_id) references account (account_id),
-    foreign key (cus_id) references customer (customer_id)
-);
-
 insert into customer (age, email, name)
 values (21, 'customer1@gmail.com', 'name1');
 
@@ -58,29 +49,17 @@ values (22, 'customer2@gmail.com', 'name2');
 insert into customer (age, email, name)
 values (23, 'customer3@gmail.com', 'name3');
 
-insert into account (balance, currency, customer_customer_id, number)
+insert into account (balance, currency, customer_id, number)
 values (1000.0, 'USD', 1, 'USD111');
 
-insert into account (balance, currency, customer_customer_id, number)
+insert into account (balance, currency, customer_id, number)
 values (1000.0, 'USD', 2, 'USD211');
 
-insert into account (balance, currency, customer_customer_id, number)
+insert into account (balance, currency, customer_id, number)
 values (200.0, 'USD', 3, 'USD311');
 
-insert into account (balance, currency, customer_customer_id, number)
+insert into account (balance, currency, customer_id, number)
 values (157.0, 'USD', 1, 'USD411');
-
-insert into r_customer_account (cus_id, acc_id)
-values (1, 1);
-
-insert into r_customer_account (cus_id, acc_id)
-values (2, 2);
-
-insert into r_customer_account (cus_id, acc_id)
-values (3, 3);
-
-insert into r_customer_account (cus_id, acc_id)
-values (1, 4);
 
 insert into employer (name, address)
 values ('employer1', 'address1');
