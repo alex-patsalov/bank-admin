@@ -61,30 +61,42 @@ public class CustomerController {
     Optional<Customer> c = customerService.getById(id);
     if (c.isPresent()) {
       Customer customer = c.get();
-      Account account = new Account(Currency.valueOf(currency.toUpperCase()), customer);
+      Account account = new Account(Currency.getByName(currency.toUpperCase().trim()), customer);
       customer.getAccounts().add(account);
       accountService.save(account);
       System.out.println("created");
     }
   }
 
+//  @DeleteMapping({"accounts/delete"})
+//  public void deleteAccount(@RequestParam("id") Integer id, @RequestParam("currency") String currency) {
+//    Optional<Customer> c = customerService.getById(id);
+//    if (c.isPresent()) {
+//      Customer customer = c.get();
+//      List<Account> customerAccounts = customer.getAccounts();
+//      Optional<Account> account = customerAccounts
+//              .stream()
+//              .filter(a -> a.getCurrency().toString().equals(currency))
+//              .findAny();
+//      List<Account> modifiedAccounts = customerAccounts
+//              .stream()
+//              .filter(a -> !a.getId().equals(account.get().getId()))
+//              .collect(Collectors.toList());
+//      modifiedAccounts.remove(account);
+//      customer.setAccounts(modifiedAccounts);
+//      customerService.save(customer);
+//      account.ifPresent(a -> accountService.delete(a));
+//    }
+//  }
+
   @DeleteMapping({"accounts/delete"})
-  public void deleteAccount(@RequestParam("id") Integer id, @RequestParam("currency") String currency) {
-    Optional<Customer> c = customerService.getById(id);
-    if (c.isPresent()) {
-      Customer customer = c.get();
-      List<Account> customerAccounts = customer.getAccounts();
-      Optional<Account> account = customerAccounts
-              .stream()
-              .filter(a -> a.getCurrency().toString().equals(currency))
-              .findFirst();
-      List<Account> modifiedAccounts = customerAccounts
-              .stream()
-              .filter(a -> !a.getId().equals(account.get().getId()))
-              .collect(Collectors.toList());
-      customer.setAccounts(modifiedAccounts);
-      customerService.save(customer);
-      account.ifPresent(a -> accountService.delete(a));
-    }
+  public void deleteAccount(@RequestParam("id") Integer id) {
+    System.out.printf("this is id %d\n",id);
+    Account acc = accountService.getById(id).get();
+    List<Customer> all = customerService.getAll();
+    Customer customer = all.stream().filter(c -> c.getAccounts().contains(acc)).findAny().get();
+    customer.getAccounts().remove(acc);
+    customerService.save(customer);
+    accountService.deleteById(id);
   }
 }

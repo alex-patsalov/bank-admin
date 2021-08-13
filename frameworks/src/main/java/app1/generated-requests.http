@@ -22,7 +22,7 @@ Content-Type: application/json
   "age": 57
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
+POST http://localhost:9000/customer/accounts/create?id=9&currency=USD
 ###
 POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
 ###
@@ -35,9 +35,9 @@ Content-Type: application/json
   "age": 1
 }
 ###
-DELETE http://localhost:9000/customer/accounts/delete?id=1&currency=USD
+DELETE http://localhost:9000/customer/accounts/delete?id=2
 ###
-DELETE http://localhost:9000/customer/delete?id=6
+DELETE http://localhost:9000/customer/delete?id=2
 
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API

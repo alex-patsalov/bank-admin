@@ -21,7 +21,7 @@ class Ajax {
     }
 
     static async put(endpoint, id, updatedObject) {
-        const {data} = await axios.put(`${endpoint}/${id}`, updatedObject, {
+        const {data} = await axios.put(endpoint,id, updatedObject, {
             headers: {
                 'Content-Type': 'application/json',
             }
@@ -31,11 +31,8 @@ class Ajax {
     }
 
     static async delete(endpoint, id) {
-        const {data} = await axios.delete(`${endpoint}/${id}`, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
+        // const {data} = await axios.delete(`${endpoint}/${id}`, {
+        const {data} = await axios.delete(endpoint, id)
         console.log('delete data-->', data);
         return data;
     }

@@ -18,6 +18,7 @@ public enum Currency {
   }
 
   public static Currency getByName(String name){
+    System.out.printf("this is cuur %s\n", name);
     return Currency.valueOf(name);
   }
 }

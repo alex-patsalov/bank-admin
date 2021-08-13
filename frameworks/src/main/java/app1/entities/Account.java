@@ -32,6 +32,7 @@ public class Account {
 
   @JsonIgnore
   @ManyToOne
+  @JoinColumn(name="customer_id", nullable=false)
   private Customer customer;
 
   public Account(Currency currency, Customer customer) {

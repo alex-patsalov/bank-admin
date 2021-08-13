@@ -28,7 +28,7 @@ const CustomersTable = function (){
                         <td className="table-data">accounts: {c.accounts.length === 0
                             ? "no accounts available"
                             : c.accounts.map(acc =>
-                        `${acc.currency}: ${acc.balance} `)}</td>
+                        `[(id:${acc.id}) ${acc.currency}: ${acc.balance}] `)}</td>
 
                     </tr>
                 )

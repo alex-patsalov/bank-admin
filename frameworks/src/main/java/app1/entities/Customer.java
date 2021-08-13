@@ -29,17 +29,13 @@ public class Customer {
   @Column(name = "age")
   private Integer age;
 
-  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JoinTable
-          (name = "r_customer_account",
-                  joinColumns = { @JoinColumn(name = "cus_id", referencedColumnName = "customer_id") },
-                  inverseJoinColumns = { @JoinColumn(name = "acc_id", referencedColumnName = "account_id") })
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
   private List<Account> accounts;
 
   @ManyToMany
   @JoinTable(name = "customers_employers",
-          joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "customer_id") },
-          inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "employer_id") })
+          joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "customer_id")},
+          inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "employer_id")})
   private List<Employer> employers;
 
   public Customer(String name, String email, Integer age) {
