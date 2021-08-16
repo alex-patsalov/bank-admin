@@ -28,11 +28,7 @@ public class CustomerController {
   @GetMapping()
   public CustomerRs getOne(@RequestParam("id") Integer id) {
     Optional<Customer> c = customerService.getById(id);
-    if (c.isPresent()) {
-      CustomerRs crs = modelMapper.map(c.get(), CustomerRs.class);
-      return crs;
-    }
-    return null;
+    return c.map(customer -> modelMapper.map(customer, CustomerRs.class)).orElse(null);
   }
 
   @GetMapping({"all"})
@@ -73,7 +69,6 @@ public class CustomerController {
       Account account = new Account(Currency.getByName(currency.toUpperCase().trim()), customer);
       customer.getAccounts().add(account);
       accountService.save(account);
-      System.out.println("created");
     }
   }
 
