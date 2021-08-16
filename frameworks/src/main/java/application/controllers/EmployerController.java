@@ -1,7 +1,7 @@
-package app1.controllers;
+package application.controllers;
 
-import app1.entities.Employer;
-import app1.services.EmployerService;
+import application.entity.Employer;
+import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

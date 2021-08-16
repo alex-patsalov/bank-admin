@@ -1,21 +1,22 @@
-package app1.entities;
+package application.entity;
 
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "employer")
-public class Employer {
+public class Employer extends AbstractEntity {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "employer_id")
-  private Integer id;
+//  @Id
+//  @GeneratedValue(strategy = GenerationType.IDENTITY)
+//  @Column(name = "employer_id")
+//  private Integer id;
 
   @Column(name = "name")
   private String name;

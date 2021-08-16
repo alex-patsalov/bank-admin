@@ -1,6 +1,6 @@
-package app1.DAO;
+package application.DAO;
 
-import app1.entities.Employer;
+import application.entity.Employer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

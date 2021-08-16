@@ -2,7 +2,7 @@
 ###
 GET http://localhost:9000/customer/all
 ###
-GET http://localhost:9000/customer?id=2
+GET http://localhost:9000/customer?id=1
 ###
 POST http://localhost:9000/customer/create
 Content-Type: application/json
@@ -10,7 +10,9 @@ Content-Type: application/json
 {
   "name": "customer2",
   "email": "customer2 email",
-  "age": 22
+  "age": 22,
+  "phone": "1234567890",
+  "password": "qwerty"
 }
 ###
 POST http://localhost:9000/customer/create
@@ -22,7 +24,7 @@ Content-Type: application/json
   "age": 57
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=9&currency=USD
+POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
 ###
 POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
 ###
@@ -35,9 +37,9 @@ Content-Type: application/json
   "age": 1
 }
 ###
-DELETE http://localhost:9000/customer/accounts/delete?id=2
+DELETE http://localhost:9000/customer/accounts/delete?id=1
 ###
-DELETE http://localhost:9000/customer/delete?id=2
+DELETE http://localhost:9000/customer/delete?id=1
 
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API

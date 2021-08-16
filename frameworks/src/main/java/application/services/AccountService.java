@@ -1,8 +1,7 @@
-package app1.services;
+package application.services;
 
-import app1.entities.Account;
-import app1.DAO.AccountDAO;
-import app1.repositories.AccountRepository;
+import application.entity.Account;
+import application.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

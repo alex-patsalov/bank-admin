@@ -1,7 +1,7 @@
-package app1.controllers;
+package application.controllers;
 
-import app1.entities.Account;
-import app1.services.AccountService;
+import application.entity.Account;
+import application.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

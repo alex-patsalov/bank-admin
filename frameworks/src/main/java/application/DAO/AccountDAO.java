@@ -1,6 +1,6 @@
-package app1.DAO;
+package application.DAO;
 
-import app1.entities.Account;
+import application.entity.Account;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;

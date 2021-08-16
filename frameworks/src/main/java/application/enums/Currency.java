@@ -1,4 +1,4 @@
-package app1.enums;
+package application.enums;
 
 public enum Currency {
   USD("USD"),

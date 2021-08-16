@@ -1,6 +1,6 @@
-package app1.DAO;
+package application.DAO;
 
-import app1.entities.Customer;
+import application.entity.Customer;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +12,7 @@ import java.util.Optional;
 @Component
 public class CustomerDAO implements DAO<Customer>{
 
-  private final List<Customer> customers = new ArrayList<>(){{
-    add(new Customer(100, "test customer 1", "test1@gmail.com", 35));
-    add(new Customer(101, "test customer 2", "test2@gmail.com", 25));
-  }};
+  private final List<Customer> customers = new ArrayList<>();
 //  private Long id = 0L;
   @Override
   public Customer save(Customer customer) {
