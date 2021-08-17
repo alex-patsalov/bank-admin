@@ -9,6 +9,7 @@ import application.services.AccountService;
 import application.services.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public class CustomerController {
   }
 
   @PostMapping({"create"})
-  public Customer createOne(@RequestBody CustomerRq c) {
+  public Customer createOne(@Validated @RequestBody CustomerRq c) {
     Customer cc = modelMapper.map(c, Customer.class);
     return customerService.save(cc);
   }

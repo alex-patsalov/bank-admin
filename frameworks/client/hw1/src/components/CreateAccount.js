@@ -23,7 +23,7 @@ const CreateAccount = () => {
     }
 
     return (
-        <div style={{display: "inline-block"}}>
+        <div>
             <div style={{display: "inline-block"}}>
                 <p>CREATE ACCOUNT</p>
                 <form onSubmit={createAccount}>

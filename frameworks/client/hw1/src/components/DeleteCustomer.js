@@ -15,7 +15,7 @@ const DeleteCustomer = () => {
     }
 
     return (
-        <div>
+        <div style={{borderWidth: '5px', borderBottom: 'solid black'}}>
             <p>DELETE A CUSTOMER</p>
             <form onSubmit={submitForm}>
                 <label htmlFor="id"> id </label>

@@ -1,12 +1,12 @@
 package application.controllers;
 
+import application.dto.request.AccountRq;
 import application.entity.Account;
 import application.services.AccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.modelmapper.ModelMapper;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -18,21 +18,21 @@ public class AccountController {
   private final AccountService accountService;
 
   @PutMapping("{put}")
-  public void putMoney(@RequestParam("accountNumber") String number, @RequestParam("sum") double sum) {
+  public void putMoney(@RequestParam("accountNumber") String number, @Validated @RequestBody AccountRq accountRq) {
     Optional<Account> account = accountService.getByNumber(number);
     if (account.isPresent()) {
       Account a = account.get();
-      a.setBalance(a.getBalance() + sum);
+      a.setBalance(a.getBalance() + accountRq.getBalance());
       accountService.save(a);
     }
   }
 
   @PutMapping({"withdraw"})
-  public void withdrawMoney(@RequestParam("accountNumber") String number, @RequestParam("sum") double sum) {
+  public void withdrawMoney(@RequestParam("accountNumber") String number, @Validated @RequestBody AccountRq accountRq) {
     Optional<Account> account = accountService.getByNumber(number);
-    if(account.isPresent() && account.get().getBalance() > sum){
+    if(account.isPresent() && account.get().getBalance() > accountRq.getBalance()){
       Account a = account.get();
-      a.setBalance(a.getBalance() - sum);
+      a.setBalance(a.getBalance() - accountRq.getBalance());
       accountService.save(a);
     }
   }

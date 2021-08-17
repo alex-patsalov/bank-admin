@@ -8,7 +8,7 @@ import javax.validation.constraints.PositiveOrZero;
 @Data
 public class AccountRq {
 
-  private Currency currency;
+  private String number;
   @PositiveOrZero(message = "balance must be greater than 0")
   private Double balance;
 
