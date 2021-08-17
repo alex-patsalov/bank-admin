@@ -1,6 +1,5 @@
-package application.dto;
+package application.dto.response;
 
-import application.entity.Account;
 import application.entity.Employer;
 import lombok.Data;
 
@@ -9,11 +8,12 @@ import java.util.List;
 @Data
 public class CustomerRs {
 
+  private Integer id;
   private String name;
   private String email;
   private Integer age;
   private String phone;
-  private List<Account> accounts;
-  private List<Employer> employers;
+  private List<AccountRs> accounts;
+  private List<EmployerRs> employers;
 
 }

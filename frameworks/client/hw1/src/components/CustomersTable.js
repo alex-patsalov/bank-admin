@@ -20,16 +20,19 @@ const CustomersTable = function (){
                 <tbody>{
                 allCustomers.map(c =>
                     <tr key={c.id}>
-                        <td className="table-data">name: {c.name}</td>
                         <td className="table-data">id: {c.id}</td>
+                        <td className="table-data">name: {c.name}</td>
                         <td className="table-data">email: {c.email}</td>
                         <td className="table-data">age: {c.age}</td>
-                        {/*<td>accounts: {c.accounts.length === 0 ? "no accounts available" : c.accounts}</td>*/}
+                        <td className="table-data">phone: {c.phone}</td>
                         <td className="table-data">accounts: {c.accounts.length === 0
                             ? "no accounts available"
                             : c.accounts.map(acc =>
-                        `[(id:${acc.id}) ${acc.currency}: ${acc.balance}] `)}</td>
-
+                        `[(id:${acc.id}, number: ${acc.number}) ${acc.currency}: ${acc.balance}] `)}</td>
+                        <td className="table-data">employers: {c.employers.length === 0
+                            ? "no employers available"
+                            : c.employers.map(emp =>
+                                `${emp.name} `)}</td>
                     </tr>
                 )
             }</tbody>

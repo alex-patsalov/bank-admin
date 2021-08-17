@@ -1,7 +1,7 @@
 package application.controllers;
 
-import application.dto.CustomerRq;
-import application.dto.CustomerRs;
+import application.dto.request.CustomerRq;
+import application.dto.response.CustomerRs;
 import application.entity.Account;
 import application.enums.Currency;
 import application.entity.Customer;
@@ -36,7 +36,6 @@ public class CustomerController {
     return customerService.getAll()
             .stream()
             .map(c -> modelMapper.map(c, CustomerRs.class)).collect(Collectors.toList());
-//    return customerService.getAll();
   }
 
   @PostMapping({"create"})
@@ -50,6 +49,8 @@ public class CustomerController {
     Optional<Customer> cId = customerService.getById(id);
     cId.ifPresent(customer -> {
       customer.setName(c.getName());
+      customer.setPhone(c.getPhone());
+      customer.setPassword(c.getPassword());
       customer.setEmail(c.getEmail());
       customer.setAge(c.getAge());
       customerService.save(cId.get());

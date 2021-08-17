@@ -23,8 +23,8 @@ const CreateAccount = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div style={{display: "inline-block"}}>
+            <div style={{display: "inline-block"}}>
                 <p>CREATE ACCOUNT</p>
                 <form onSubmit={createAccount}>
                     <label htmlFor="userID"> customer ID </label>
@@ -36,15 +36,15 @@ const CreateAccount = () => {
                         <option name="currency" value="CHF">CHF</option>
                         <option name="currency" value="GBP">GBP</option>
                     </select>
-                    <input style={{margin: '0 0 0 20px'}} type="submit" value="create"/>
+                    <input style={{margin: '0 0 0 20px'}} type="submit" value="CREATE"/>
                 </form>
             </div>
-            <div>
+            <div style={{display: "inline-block", marginLeft: '20px'}}>
                 <p>DELETE ACCOUNT</p>
                 <form onSubmit={deleteCurrency}>
                     <label htmlFor="accountID"> account ID </label>
                     <input id="accountID" name="accountID" type="text" onChange={handleChangeId}/>
-                    <input style={{margin: '0 0 0 20px'}} type="submit" value="delete"/>
+                    <input style={{margin: '0 0 0 20px'}} type="submit" value="DELETE"/>
                 </form>
             </div>
         </div>

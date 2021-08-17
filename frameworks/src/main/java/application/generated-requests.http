@@ -10,7 +10,7 @@ Content-Type: application/json
 {
   "name": "customer2",
   "email": "customer2 email",
-  "age": 22,
+  "age": 12,
   "phone": "1234567890",
   "password": "qwerty"
 }

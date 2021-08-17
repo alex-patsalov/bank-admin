@@ -1,10 +1,10 @@
 import Ajax from "../utils/Ajax";
 import {useState} from "react";
 
-const FormToCreate = () => {
+const ModifyCustomer = () => {
 
     const [user, setUser] = useState({
-        age: '', email: '', name: 'name'
+        id: 1, age: '', email: '', name: 'name', phone: '', password: ''
     })
 
     const handleChange = (event) => {
@@ -13,23 +13,29 @@ const FormToCreate = () => {
 
     const submitForm = (data) => {
         // data.preventDefault();
-        Ajax.post("/customer/create", user)
+        Ajax.put(`/customer/modify?id=${user.id}`, user)
     }
 
     return (
         <div>
-            <p>CREATE A CUSTOMER</p>
+            <p>MODIFY A CUSTOMER</p>
             <form onSubmit={submitForm}>
+                <label htmlFor="id"> id </label>
+                <input id="id" name="id" type="text" onChange={handleChange}/>
                 <label htmlFor="name"> name </label>
                 <input id="name" name="name" type="text" onChange={handleChange}/>
                 <label htmlFor="email"> email </label>
                 <input id="email" name="email" type="text" onChange={handleChange}/>
                 <label htmlFor="age"> age </label>
                 <input id="age" name="age" type="text" onChange={handleChange}/>
-                <input style={{margin: '0 0 0 20px'}} type="submit" value="create"/>
+                <label htmlFor="phone"> phone </label>
+                <input id="phone" name="phone" type="text" onChange={handleChange}/>
+                <label htmlFor="password"> password </label>
+                <input id="password" name="password" type="text" onChange={handleChange}/>
+                <input style={{margin: '0 0 0 20px'}} type="submit" value="MODIFY"/>
             </form>
         </div>
     );
 
 }
-export default FormToCreate;
+export default ModifyCustomer;
