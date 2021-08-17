@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -14,13 +16,9 @@ import java.util.UUID;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "account")
 public class Account extends AbstractEntity {
-
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.IDENTITY)
-//  @Column(name = "account_id")
-//  private Integer id;
 
   @Column(name = "number")
   private String number;
@@ -43,15 +41,4 @@ public class Account extends AbstractEntity {
     this.balance = 0.0;
     this.customer = customer;
   }
-
-//  @Override
-//  public String toString() {
-//    return "[Account:" +
-////            "id=" + id +
-//            ", number='" + number + '\'' +
-//            ", currency=" + currency +
-//            ", balance=" + balance +
-//            ", customer=" + customer +
-//            ']';
-//  }
 }

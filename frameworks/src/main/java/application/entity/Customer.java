@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.List;
 import javax.persistence.*;
@@ -14,13 +15,9 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "customer")
 public class Customer extends AbstractEntity {
-
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.IDENTITY)
-//  @Column(name = "customer_id")
-//  private Integer id;
 
   @Column(name = "name")
   private String name;
@@ -43,34 +40,7 @@ public class Customer extends AbstractEntity {
 
   @ManyToMany
   @JoinTable(name = "customers_employers",
-//          joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "customer_id")},
           joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "id")},
           inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "id")})
   private List<Employer> employers;
-
-//  public Customer(String name, String email, Integer age) {
-//    this.name = name;
-//    this.email = email;
-//    this.age = age;
-//    this.accounts = new ArrayList<Account>();
-//  }
-
-//  public Customer(String name, String email, Integer age) {
-////    this.id = id;
-//    this.name = name;
-//    this.email = email;
-//    this.age = age;
-//    this.accounts = new ArrayList<Account>();
-//  }
-
-//  @Override
-//  public String toString() {
-//    return "[Customer:" +
-//            "id=" + id +
-//            ", name='" + name + '\'' +
-//            ", email='" + email + '\'' +
-//            ", age=" + age +
-//            ", accounts=" + accounts +
-//            ']';
-//  }
 }

@@ -1,6 +1,7 @@
 package application.entity;
 
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,13 +11,9 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "employer")
 public class Employer extends AbstractEntity {
-
-//  @Id
-//  @GeneratedValue(strategy = GenerationType.IDENTITY)
-//  @Column(name = "employer_id")
-//  private Integer id;
 
   @Column(name = "name")
   private String name;
@@ -26,6 +23,4 @@ public class Employer extends AbstractEntity {
 
   @ManyToMany(mappedBy = "employers")
   private List<Customer> customers;
-
-
 }
