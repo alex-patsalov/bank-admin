@@ -1,12 +1,19 @@
 package application.controllers;
 
+import application.dto.request.EmployerRq;
+import application.dto.response.EmployerRs;
+import application.entity.Customer;
 import application.entity.Employer;
+import application.services.CustomerService;
 import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -14,38 +21,41 @@ import java.util.Optional;
 public class EmployerController {
 
   private final EmployerService employerService;
+  private final CustomerService customerService;
+  private final ModelMapper modelMapper = new ModelMapper();
 
   @GetMapping()
-  public Optional<Employer> getOne(@RequestParam("id") Integer id){
-    return employerService.getById(id);
+  public EmployerRs getOne(@RequestParam("id") Integer id){
+    Optional<Employer> employer = employerService.getById(id);
+    return employer.map(e -> modelMapper.map(e, EmployerRs.class)).orElse(null);
   }
 
   @GetMapping({"all"})
-  public List<Employer> getAll(){
-    return employerService.getAll();
+  public List<EmployerRs> getAll(){
+    return employerService.getAll()
+            .stream()
+            .map(e -> modelMapper.map(e, EmployerRs.class)).collect(Collectors.toList());
   }
 
   @PostMapping({"create"})
-  public Employer createOne(@RequestBody Employer e){
-    return employerService.save(e);
+  public Employer createOne(@Validated @RequestBody EmployerRq e){
+    Employer emp = modelMapper.map(e, Employer.class);
+    return employerService.save(emp);
   }
 
-  @PutMapping({"modify/{id}"})
-  public Employer modify(@PathVariable("id") Integer id, @RequestBody Employer e) {
-    return employerService.getById(id)
-            .map(employer -> {
-              employer.setName(e.getName());
-              employer.setAddress(e.getAddress());
-              return employer;
-            })
-            .orElseGet(() -> {
-              e.setId(id);
-              return employerService.save(e);
-            });
+  @PutMapping({"modify"})
+  public Optional<Employer> modify(@RequestParam("id") Integer id, @RequestBody EmployerRq e) {
+    Optional<Employer> eId = employerService.getById(id);
+    eId.ifPresent(employer -> {
+      employer.setName(e.getName());
+      employer.setAddress(e.getAddress());
+      employerService.save(eId.get());
+    });
+    return Optional.ofNullable(eId.get());
   }
 
-  @DeleteMapping({"delete/{id}"})
-  public void deleteEmployer(@PathVariable("id") Integer id){
+  @DeleteMapping({"delete"})
+  public void deleteEmployer(@RequestParam("id") Integer id){
     employerService.deleteById(id);
   }
 }

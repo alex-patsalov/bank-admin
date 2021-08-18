@@ -8,20 +8,11 @@ POST http://localhost:9000/customer/create
 Content-Type: application/json
 
 {
-  "name": "customer2",
-  "email": "customer2 email",
-  "age": 12,
+  "name": "customer",
+  "email": "customer@gmail.com",
+  "age": 19,
   "phone": "1234567890",
   "password": "qwerty"
-}
-###
-POST http://localhost:9000/customer/create
-Content-Type: application/json
-
-{
-  "name": "rich",
-  "email": "rich email",
-  "age": 57
 }
 ###
 POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
@@ -32,14 +23,18 @@ PUT http://localhost:9000/customer/modify?id=1
 Content-Type: application/json
 
 {
-  "name": "customer1 modified",
-  "email": "customer1 email modified",
-  "age": 1
+  "name": "customer modified",
+  "email": "customerModified@gmail.com",
+  "age": 23,
+  "phone": "111111111",
+  "password": "qwerty"
 }
 ###
 DELETE http://localhost:9000/customer/accounts/delete?id=1
 ###
 DELETE http://localhost:9000/customer/delete?id=1
+###
+POST http://localhost:9000/customer/setEmployer?cID=1&eID=2
 
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API
@@ -64,8 +59,8 @@ POST http://localhost:9000/employer/create
 Content-Type: application/json
 
 {
-  "name": "employer1",
-  "address": "employer1 addresss"
+  "name": "employer2",
+  "address": "employer2 addresss"
 }
 
 ###

@@ -5,6 +5,7 @@ import DeleteCustomer from "./components/DeleteCustomer";
 import ModifyCustomer from "./components/ModifyCustomer";
 import ChangeAccount from "./components/ChangeAccount";
 import TransferMoney from "./components/TransferMoney";
+import CreateEmployer from "./components/CreateEmployer";
 
 const App = function () {
     return (
@@ -17,6 +18,7 @@ const App = function () {
             <CreateAccount/>
             <ChangeAccount/>
             <TransferMoney/>
+            <CreateEmployer/>
         </div>
     );
 }

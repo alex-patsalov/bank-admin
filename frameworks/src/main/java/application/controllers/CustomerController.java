@@ -3,10 +3,12 @@ package application.controllers;
 import application.dto.request.CustomerRq;
 import application.dto.response.CustomerRs;
 import application.entity.Account;
+import application.entity.Employer;
 import application.enums.Currency;
 import application.entity.Customer;
 import application.services.AccountService;
 import application.services.CustomerService;
+import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +26,7 @@ public class CustomerController {
 
   private final CustomerService customerService;
   private final AccountService accountService;
+  private final EmployerService employerService;
   private final ModelMapper modelMapper = new ModelMapper();
 
   @GetMapping()
@@ -83,6 +86,17 @@ public class CustomerController {
       customer.getAccounts().remove(acc.get());
       customerService.save(customer);
       accountService.deleteById(id);
+    }
+  }
+
+  @PostMapping({"setEmployer"})
+  public void setEmployer(@RequestParam("cID") Integer cID, @RequestParam("eID") Integer eID){
+    Optional<Customer> c = customerService.getById(cID);
+    Optional<Employer> e = employerService.getById(eID);
+    if(c.isPresent() && e.isPresent()) {
+      c.get().getEmployers().add(e.get());
+      customerService.save(c.get());
+      employerService.save(e.get());
     }
   }
 }
