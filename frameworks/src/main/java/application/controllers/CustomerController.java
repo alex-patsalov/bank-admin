@@ -36,8 +36,9 @@ public class CustomerController {
   }
 
   @GetMapping({"all"})
-  public List<CustomerRs> getAll() {
-    return customerService.getAll()
+  public List<CustomerRs> getAll(@RequestParam(value = "page", required = false, defaultValue = "0") int page,
+                                  @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
+    return customerService.getAll(page, limit)
             .stream()
             .map(c -> modelMapper.map(c, CustomerRs.class)).collect(Collectors.toList());
   }
@@ -81,10 +82,10 @@ public class CustomerController {
   public void deleteAccount(@RequestParam("id") Integer id) {
     Optional<Account> acc = accountService.getById(id);
     if(acc.isPresent()){
-      List<Customer> all = customerService.getAll();
-      Customer customer = all.stream().filter(c -> c.getAccounts().contains(acc.get())).findAny().get();
-      customer.getAccounts().remove(acc.get());
-      customerService.save(customer);
+//      List<Customer> all = customerService.getAll();
+//      Customer customer = all.stream().filter(c -> c.getAccounts().contains(acc.get())).findAny().get();
+//      customer.getAccounts().remove(acc.get());
+//      customerService.save(customer);
       accountService.deleteById(id);
     }
   }

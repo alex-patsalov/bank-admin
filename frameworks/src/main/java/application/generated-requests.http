@@ -1,6 +1,6 @@
 #CUSTOMER API
 ###
-GET http://localhost:9000/customer/all
+GET http://localhost:9000/customer/all?page=1
 ###
 GET http://localhost:9000/customer?id=1
 ###
@@ -8,8 +8,8 @@ POST http://localhost:9000/customer/create
 Content-Type: application/json
 
 {
-  "name": "customer",
-  "email": "customer@gmail.com",
+  "name": "customer4",
+  "email": "customer4@gmail.com",
   "age": 19,
   "phone": "1234567890",
   "password": "qwerty"

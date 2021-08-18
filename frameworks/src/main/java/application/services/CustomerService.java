@@ -3,6 +3,8 @@ package application.services;
 import application.entity.Customer;
 import application.repositories.CustomerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,12 +29,12 @@ public class CustomerService {
     return customerDAO.findById(id);
   }
 
-  public Optional<Customer> getByName(String name){
-    return getAll().stream().filter(c -> c.getName().equals(name)).findFirst();
-  }
+//  public Optional<Customer> getByName(String name){
+//    return getAll().stream().filter(c -> c.getName().equals(name)).findFirst();
+//  }
 
-  public List<Customer> getAll(){
-    return customerDAO.findAll();
+  public Page<Customer> getAll(int page, int limit){
+    return customerDAO.findAll(PageRequest.of(page, limit));
   }
 
   public void deleteById(Integer id){
