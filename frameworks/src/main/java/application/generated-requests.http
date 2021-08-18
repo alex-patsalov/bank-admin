@@ -1,6 +1,6 @@
 #CUSTOMER API
 ###
-GET http://localhost:9000/customer/all?page=1
+GET http://localhost:9000/customer/all
 ###
 GET http://localhost:9000/customer?id=1
 ###

@@ -6,6 +6,7 @@ import application.entity.Account;
 import application.entity.Employer;
 import application.enums.Currency;
 import application.entity.Customer;
+import application.facade.CustomerFacade;
 import application.services.AccountService;
 import application.services.CustomerService;
 import application.services.EmployerService;
@@ -28,11 +29,13 @@ public class CustomerController {
   private final AccountService accountService;
   private final EmployerService employerService;
   private final ModelMapper modelMapper = new ModelMapper();
+  private final CustomerFacade customerFacade;
 
   @GetMapping()
   public CustomerRs getOne(@RequestParam("id") Integer id) {
     Optional<Customer> c = customerService.getById(id);
-    return c.map(customer -> modelMapper.map(customer, CustomerRs.class)).orElse(null);
+//    return c.map(customer -> modelMapper.map(customer, CustomerRs.class)).orElse(null);
+    return c.map(customer -> customerFacade.fromEntity(customer)).orElse(null);
   }
 
   @GetMapping({"all"})
@@ -40,12 +43,14 @@ public class CustomerController {
                                   @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
     return customerService.getAll(page, limit)
             .stream()
-            .map(c -> modelMapper.map(c, CustomerRs.class)).collect(Collectors.toList());
+//            .map(c -> modelMapper.map(c, CustomerRs.class)).collect(Collectors.toList());
+            .map(c -> customerFacade.fromEntity(c)).collect(Collectors.toList());
   }
 
   @PostMapping({"create"})
   public Customer createOne(@Validated @RequestBody CustomerRq c) {
-    Customer cc = modelMapper.map(c, Customer.class);
+//    Customer cc = modelMapper.map(c, Customer.class);
+    Customer cc = customerFacade.toEntity(c);
     return customerService.save(cc);
   }
 
