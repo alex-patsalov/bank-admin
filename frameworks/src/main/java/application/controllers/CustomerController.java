@@ -3,15 +3,14 @@ package application.controllers;
 import application.dto.request.CustomerRq;
 import application.dto.response.CustomerRs;
 import application.entity.Account;
+import application.entity.Customer;
 import application.entity.Employer;
 import application.enums.Currency;
-import application.entity.Customer;
 import application.facade.CustomerFacade;
 import application.services.AccountService;
 import application.services.CustomerService;
 import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

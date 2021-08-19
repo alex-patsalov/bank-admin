@@ -21,6 +21,6 @@ public class Employer extends AbstractEntity {
   @Column(name = "address")
   private String address;
 
-  @ManyToMany(cascade = CascadeType.REMOVE, mappedBy = "employers")
+  @ManyToMany(cascade = CascadeType.MERGE, mappedBy = "employers")
   private List<Customer> customers;
 }

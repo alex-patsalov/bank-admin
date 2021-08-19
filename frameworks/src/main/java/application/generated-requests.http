@@ -80,3 +80,6 @@ Content-Type: application/json
 
 ###
 DELETE http://localhost:9000/employer/delete?id=1
+
+###
+POST http://localhost:9000/customer/setEmployer?cID=1&eID=1

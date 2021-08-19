@@ -38,9 +38,12 @@ public class Customer extends AbstractEntity {
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
   private List<Account> accounts;
 
-  @ManyToMany
+  @ManyToMany(cascade = CascadeType.MERGE)
   @JoinTable(name = "customers_employers",
           joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "id")},
-          inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "id")})
+          inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "id")},
+          uniqueConstraints = {@UniqueConstraint(
+                  columnNames = {"cus_id", "emp_id"}
+          )})
   private List<Employer> employers;
 }

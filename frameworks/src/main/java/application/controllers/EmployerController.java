@@ -23,13 +23,11 @@ public class EmployerController {
 
   private final EmployerService employerService;
   private final CustomerService customerService;
-  private final ModelMapper modelMapper = new ModelMapper();
   private final EmployerFacade employerFacade;
 
   @GetMapping()
   public EmployerRs getOne(@RequestParam("id") Integer id){
     Optional<Employer> employer = employerService.getById(id);
-//    return employer.map(e -> modelMapper.map(e, EmployerRs.class)).orElse(null);
     return employer.map(e -> employerFacade.fromEntity(e)).orElse(null);
   }
 
@@ -37,13 +35,11 @@ public class EmployerController {
   public List<EmployerRs> getAll(){
     return employerService.getAll()
             .stream()
-//            .map(e -> modelMapper.map(e, EmployerRs.class)).collect(Collectors.toList());
             .map(e -> employerFacade.fromEntity(e)).collect(Collectors.toList());
   }
 
   @PostMapping({"create"})
   public Employer createOne(@Validated @RequestBody EmployerRq e){
-//    Employer emp = modelMapper.map(e, Employer.class);
     return employerService.save(employerFacade.toEntity(e));
   }
 
@@ -55,7 +51,7 @@ public class EmployerController {
       employer.setAddress(e.getAddress());
       employerService.save(eId.get());
     });
-    return Optional.ofNullable(eId.get());
+    return Optional.of(eId.get());
   }
 
   @DeleteMapping({"delete"})

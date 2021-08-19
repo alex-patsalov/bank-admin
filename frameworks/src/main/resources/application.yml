@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   profiles:
-    active: prod
+    active: prod-test
 ---
 spring:
   profiles: local
