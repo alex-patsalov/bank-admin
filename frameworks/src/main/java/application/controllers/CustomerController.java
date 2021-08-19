@@ -28,13 +28,11 @@ public class CustomerController {
   private final CustomerService customerService;
   private final AccountService accountService;
   private final EmployerService employerService;
-  private final ModelMapper modelMapper = new ModelMapper();
   private final CustomerFacade customerFacade;
 
   @GetMapping()
   public CustomerRs getOne(@RequestParam("id") Integer id) {
     Optional<Customer> c = customerService.getById(id);
-//    return c.map(customer -> modelMapper.map(customer, CustomerRs.class)).orElse(null);
     return c.map(customer -> customerFacade.fromEntity(customer)).orElse(null);
   }
 
@@ -43,13 +41,11 @@ public class CustomerController {
                                   @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
     return customerService.getAll(page, limit)
             .stream()
-//            .map(c -> modelMapper.map(c, CustomerRs.class)).collect(Collectors.toList());
             .map(c -> customerFacade.fromEntity(c)).collect(Collectors.toList());
   }
 
   @PostMapping({"create"})
   public Customer createOne(@Validated @RequestBody CustomerRq c) {
-//    Customer cc = modelMapper.map(c, Customer.class);
     Customer cc = customerFacade.toEntity(c);
     return customerService.save(cc);
   }
@@ -87,10 +83,6 @@ public class CustomerController {
   public void deleteAccount(@RequestParam("id") Integer id) {
     Optional<Account> acc = accountService.getById(id);
     if(acc.isPresent()){
-//      List<Customer> all = customerService.getAll();
-//      Customer customer = all.stream().filter(c -> c.getAccounts().contains(acc.get())).findAny().get();
-//      customer.getAccounts().remove(acc.get());
-//      customerService.save(customer);
       accountService.deleteById(id);
     }
   }

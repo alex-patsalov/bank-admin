@@ -8,14 +8,14 @@ POST http://localhost:9000/customer/create
 Content-Type: application/json
 
 {
-  "name": "customer4",
-  "email": "customer4@gmail.com",
-  "age": 19,
+  "name": "Alice",
+  "email": "alice@gmail.com",
+  "age": 32,
   "phone": "1234567890",
   "password": "qwerty"
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=2&currency=USD
+POST http://localhost:9000/customer/accounts/create?id=4&currency=EUR
 ###
 POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
 ###
@@ -39,7 +39,13 @@ POST http://localhost:9000/customer/setEmployer?cID=1&eID=2
 #-----------------------------------------------------------------------------------------------------
 ###ACCOUNT API
 ###
-PUT http://localhost:9000/account/put?accountNumber=8187351f-9579-416b-b879-a729282f3ced&sum=1000
+PUT http://localhost:9000/account/put?accountNumber=8a90ae29-8c3c-410d-abec-cb8a580b2724
+Content-Type: application/json
+
+{
+  "number": "8a90ae29-8c3c-410d-abec-cb8a580b2724",
+  "balance": 1320
+}
 ###
 PUT http://localhost:9000/account/withdraw?accountNumber=USD111&sum=117
 ###
@@ -59,12 +65,12 @@ POST http://localhost:9000/employer/create
 Content-Type: application/json
 
 {
-  "name": "employer2",
-  "address": "employer2 addresss"
+  "name": "employer1",
+  "address": "employer1 addresss"
 }
 
 ###
-PUT http://localhost:9000/employer/modify/1
+PUT http://localhost:9000/employer/modify?id=1
 Content-Type: application/json
 
 {
@@ -73,4 +79,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:9000/employer/delete/1
+DELETE http://localhost:9000/employer/delete?id=1

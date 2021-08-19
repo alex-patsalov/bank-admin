@@ -4,6 +4,7 @@ import application.dto.request.EmployerRq;
 import application.dto.response.EmployerRs;
 import application.entity.Customer;
 import application.entity.Employer;
+import application.facade.EmployerFacade;
 import application.services.CustomerService;
 import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
@@ -23,24 +24,27 @@ public class EmployerController {
   private final EmployerService employerService;
   private final CustomerService customerService;
   private final ModelMapper modelMapper = new ModelMapper();
+  private final EmployerFacade employerFacade;
 
   @GetMapping()
   public EmployerRs getOne(@RequestParam("id") Integer id){
     Optional<Employer> employer = employerService.getById(id);
-    return employer.map(e -> modelMapper.map(e, EmployerRs.class)).orElse(null);
+//    return employer.map(e -> modelMapper.map(e, EmployerRs.class)).orElse(null);
+    return employer.map(e -> employerFacade.fromEntity(e)).orElse(null);
   }
 
   @GetMapping({"all"})
   public List<EmployerRs> getAll(){
     return employerService.getAll()
             .stream()
-            .map(e -> modelMapper.map(e, EmployerRs.class)).collect(Collectors.toList());
+//            .map(e -> modelMapper.map(e, EmployerRs.class)).collect(Collectors.toList());
+            .map(e -> employerFacade.fromEntity(e)).collect(Collectors.toList());
   }
 
   @PostMapping({"create"})
   public Employer createOne(@Validated @RequestBody EmployerRq e){
-    Employer emp = modelMapper.map(e, Employer.class);
-    return employerService.save(emp);
+//    Employer emp = modelMapper.map(e, Employer.class);
+    return employerService.save(employerFacade.toEntity(e));
   }
 
   @PutMapping({"modify"})
