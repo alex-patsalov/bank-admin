@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -38,12 +39,16 @@ public class Customer extends AbstractEntity {
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
   private List<Account> accounts;
 
-  @ManyToMany(cascade = CascadeType.MERGE)
-  @JoinTable(name = "customers_employers",
-          joinColumns = {@JoinColumn(name = "cus_id", referencedColumnName = "id")},
-          inverseJoinColumns = {@JoinColumn(name = "emp_id", referencedColumnName = "id")},
+  @ManyToMany(cascade = {
+          CascadeType.MERGE
+  }, fetch = FetchType.LAZY)
+  @JoinTable(
+          name = "customers_employers",
+          joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
+          inverseJoinColumns = {@JoinColumn(name = "employer_id", referencedColumnName = "id")},
           uniqueConstraints = {@UniqueConstraint(
-                  columnNames = {"cus_id", "emp_id"}
-          )})
-  private List<Employer> employers;
+                  columnNames = {"customer_id", "employer_id"}
+          )}
+  )
+  List<Employer> employers = new ArrayList<>();
 }

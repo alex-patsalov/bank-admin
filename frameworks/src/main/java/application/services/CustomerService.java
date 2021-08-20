@@ -29,10 +29,6 @@ public class CustomerService {
     return customerDAO.findById(id);
   }
 
-//  public Optional<Customer> getByName(String name){
-//    return getAll().stream().filter(c -> c.getName().equals(name)).findFirst();
-//  }
-
   public Page<Customer> getAll(int page, int limit){
     return customerDAO.findAll(PageRequest.of(page, limit));
   }

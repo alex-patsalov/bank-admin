@@ -2,13 +2,11 @@ package application.controllers;
 
 import application.dto.request.EmployerRq;
 import application.dto.response.EmployerRs;
-import application.entity.Customer;
 import application.entity.Employer;
 import application.facade.EmployerFacade;
 import application.services.CustomerService;
 import application.services.EmployerService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
