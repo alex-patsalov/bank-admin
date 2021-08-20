@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   profiles:
-    active: prod-test
+    active: prod
 ---
 spring:
   profiles: local
@@ -26,8 +26,8 @@ spring:
     password: "J0q2m9A8Q-qxuSR1BvhhggpXehmGHgpP"
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: create
+#    hibernate:
+#      ddl-auto: create
 ---
 spring:
   profiles: prod-test
