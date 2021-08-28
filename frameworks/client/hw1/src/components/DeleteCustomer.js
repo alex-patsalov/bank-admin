@@ -11,7 +11,7 @@ const DeleteCustomer = () => {
 
     const submitForm = (data) => {
         // data.preventDefault();
-        Ajax.delete(`/customer/delete?id=${id}`)
+        Ajax.delete(`/customer?id=${id}`)
     }
 
     return (

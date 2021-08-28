@@ -4,22 +4,26 @@ GET http://localhost:9000/customer/all
 ###
 GET http://localhost:9000/customer?id=1
 ###
-POST http://localhost:9000/customer/create
+#POST http://localhost:9000/customer/create
+POST http://localhost:9000/customer
 Content-Type: application/json
 
 {
-  "name": "Alice",
+  "name": "Jack",
   "email": "alice@gmail.com",
   "age": 32,
   "phone": "1234567890",
   "password": "qwerty"
 }
 ###
-POST http://localhost:9000/customer/accounts/create?id=4&currency=EUR
+#POST http://localhost:9000/customer/accounts/create?id=4&currency=EUR
+POST http://localhost:9000/customer/accounts?id=1&currency=EUR
 ###
-POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
+#POST http://localhost:9000/customer/accounts/create?id=1&currency=UAH
+POST http://localhost:9000/customer/accounts?id=1&currency=UAH
 ###
-PUT http://localhost:9000/customer/modify?id=1
+#PUT http://localhost:9000/customer/modify?id=1
+PUT http://localhost:9000/customer?id=1
 Content-Type: application/json
 
 {
@@ -30,9 +34,11 @@ Content-Type: application/json
   "password": "qwerty"
 }
 ###
-DELETE http://localhost:9000/customer/accounts/delete?id=1
+#DELETE http://localhost:9000/customer/accounts/delete?id=1
+DELETE http://localhost:9000/customer/accounts?id=1
 ###
-DELETE http://localhost:9000/customer/delete?id=1
+#DELETE http://localhost:9000/customer/delete?id=1
+DELETE http://localhost:9000/customer?id=1
 ###
 POST http://localhost:9000/customer/setEmployer?cID=1&eID=2
 
@@ -61,7 +67,8 @@ GET http://localhost:9000/employer?id=1
 GET http://localhost:9000/employer/all
 
 ###
-POST http://localhost:9000/employer/create
+#POST http://localhost:9000/employer/create
+POST http://localhost:9000/employer
 Content-Type: application/json
 
 {
@@ -70,7 +77,8 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:9000/employer/modify?id=1
+#PUT http://localhost:9000/employer/modify?id=1
+PUT http://localhost:9000/employer?id=1
 Content-Type: application/json
 
 {
@@ -79,7 +87,8 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:9000/employer/delete?id=1
+#DELETE http://localhost:9000/employer/delete?id=1
+DELETE http://localhost:9000/employer?id=1
 
 ###
 POST http://localhost:9000/customer/setEmployer?cID=1&eID=1

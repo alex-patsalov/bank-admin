@@ -22,15 +22,15 @@ const CreateEmployer = () => {
     }
 
     const createEmployer = () => {
-        Ajax.post(`employer/create`, employer)
+        Ajax.post(`/employer`, employer)
     }
 
     const assignEmployerToCustomer = () => {
-        Ajax.post(`customer/setEmployer?cID=${empCus.cusId}&eID=${empCus.empId}`, )
+        Ajax.post(`/customer/setEmployer?cID=${empCus.cusId}&eID=${empCus.empId}`, )
     }
 
     const deleteEmployer = () => {
-        Ajax.delete(`employer/delete?id=${idDelete}`)
+        Ajax.delete(`/employer?id=${idDelete}`)
     }
 
     return (

@@ -13,7 +13,7 @@ const CreateCustomer = () => {
 
     const submitForm = (data) => {
         // data.preventDefault();
-        Ajax.post("/customer/create", user)
+        Ajax.post("/customer", user)
     }
 
     return (

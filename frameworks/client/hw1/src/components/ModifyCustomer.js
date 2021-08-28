@@ -13,7 +13,7 @@ const ModifyCustomer = () => {
 
     const submitForm = (data) => {
         // data.preventDefault();
-        Ajax.put(`/customer/modify?id=${user.id}`, user)
+        Ajax.put(`/customer?id=${user.id}`, user)
     }
 
     return (

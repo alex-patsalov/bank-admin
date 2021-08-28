@@ -25,6 +25,10 @@ public class Employer extends AbstractEntity {
   @Column(name = "address")
   private String address;
 
-  @ManyToMany(mappedBy = "employers", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+  @ManyToMany(cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+  @JoinTable(name = "customers_employers",
+          joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
+          inverseJoinColumns = {@JoinColumn(name = "employer_id", referencedColumnName = "id")},
+          uniqueConstraints = {@UniqueConstraint(columnNames = {"customer_id", "employer_id"})})
   private List<Customer> customers = new ArrayList<>();
 }

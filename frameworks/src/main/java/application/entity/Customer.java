@@ -37,18 +37,12 @@ public class Customer extends AbstractEntity {
   private String password;
 
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "customer")
-  private List<Account> accounts;
+  private List<Account> accounts = new ArrayList<>();
 
-  @ManyToMany(cascade = {
-          CascadeType.MERGE
-  }, fetch = FetchType.LAZY)
-  @JoinTable(
-          name = "customers_employers",
+  @ManyToMany(cascade ={CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
+  @JoinTable(name = "customers_employers",
           joinColumns = {@JoinColumn(name = "customer_id", referencedColumnName = "id")},
           inverseJoinColumns = {@JoinColumn(name = "employer_id", referencedColumnName = "id")},
-          uniqueConstraints = {@UniqueConstraint(
-                  columnNames = {"customer_id", "employer_id"}
-          )}
-  )
+          uniqueConstraints = {@UniqueConstraint(columnNames = {"customer_id", "employer_id"})})
   List<Employer> employers = new ArrayList<>();
 }

@@ -15,11 +15,11 @@ const CreateAccount = () => {
     }
 
     const createAccount = () => {
-        Ajax.post(`customer/accounts/create?id=${id}&currency=${currency}`)
+        Ajax.post(`/customer/accounts?id=${id}&currency=${currency}`)
     }
 
     const deleteCurrency = () => {
-        Ajax.delete(`customer/accounts/delete?id=${id}`)
+        Ajax.delete(`/customer/accounts?id=${id}`)
     }
 
     return (
