@@ -11,7 +11,6 @@ public class CustomerRq {
   @Size(min = 2)
   private String name;
 
-//  @Pattern(regexp = "^[_A-Za-z0-9-\\\\+]+(\\\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\\\.[A-Za-z0-9]+)*(\\\\.[A-Za-z]{2,})$",
   @Pattern(regexp = "^([a-zA-Z0-9]+(?:[._+-][a-zA-Z0-9]+)*)@([a-zA-Z0-9]+(?:[.-][a-zA-Z0-9]+)*[.][a-zA-Z]{2,})$",
           message = "email is not valid")
   private String email;
@@ -26,5 +25,7 @@ public class CustomerRq {
   private String phone;
 
   private String password;
+
+  private String role;
 
 }

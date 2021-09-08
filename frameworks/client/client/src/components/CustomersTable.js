@@ -33,6 +33,7 @@ const CustomersTable = function (){
                             ? "no employers available"
                             : c.employers.map(emp =>
                                 `${emp.name}: ${emp.address}`)}</td>
+                        <td className="table-data">role: {c.role}</td>
                     </tr>
                 )
             }</tbody>

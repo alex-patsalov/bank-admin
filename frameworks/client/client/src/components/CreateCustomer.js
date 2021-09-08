@@ -4,16 +4,19 @@ import {useState} from "react";
 const CreateCustomer = () => {
 
     const [user, setUser] = useState({
-        age: '', email: '', name: 'name', phone: '', password: ''
+        age: '', email: '', name: 'name', phone: '', password: '', role: 'USER'
     })
 
     const handleChange = (event) => {
         setUser({...user, [event.target.name]: event.target.value});
+        console.log(user);
+        console.log(event.target.value);
     }
 
-    const submitForm = (data) => {
-        // data.preventDefault();
+    const submitForm = (e) => {
+        // e.preventDefault();
         Ajax.post("/customer", user)
+        console.log(user);
     }
 
     return (
@@ -30,6 +33,11 @@ const CreateCustomer = () => {
                 <input id="phone" name="phone" type="text" onChange={handleChange}/>
                 <label htmlFor="password"> password </label>
                 <input id="password" name="password" type="text" onChange={handleChange}/>
+                <label htmlFor="role"> role </label>
+                <select name="role" onChange={handleChange}>
+                    <option value="USER"> USER </option>
+                    <option value="ADMIN"> ADMIN </option>
+                </select>
                 <input style={{margin: '0 0 0 20px'}} type="submit" value="CREATE"/>
             </form>
         </div>

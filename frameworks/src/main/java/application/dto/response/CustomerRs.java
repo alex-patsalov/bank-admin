@@ -15,5 +15,6 @@ public class CustomerRs {
   private String phone;
   private List<AccountRs> accounts;
   private List<EmployerRs> employers;
+  private String role;
 
 }
