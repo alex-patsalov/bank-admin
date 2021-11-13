@@ -1,6 +1,5 @@
 package application.dto.request;
 
-import application.enums.Currency;
 import lombok.Data;
 
 import javax.validation.constraints.PositiveOrZero;

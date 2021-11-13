@@ -27,6 +27,7 @@ public class AccountService {
     return accountDAO.findById(id);
   }
 
+//  move to repo
   public Optional<Account> getByNumber(String number){
     return getAll().stream().filter(a -> a.getNumber().equals(number)).findAny();
   }
